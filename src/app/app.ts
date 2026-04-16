@@ -4,23 +4,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
-  template: `
-    <app-navbar />
-    <main>
-      <router-outlet />
-    </main>
-    <app-footer />
-  `,
-  styles: [`
-    main {
-      min-height: calc(100vh - 64px - 80px);
-      background: #F0F2F5;
-    }
-  `]
+selector: 'app-root',
+standalone: true,
+imports: [RouterOutlet, NavbarComponent, FooterComponent],
+templateUrl: './app.html',
+styleUrls: ['./app.css']
 })
 export class AppComponent {
-  title = 'cityservicefinder';
+title = 'cityservicefinder';
 }
