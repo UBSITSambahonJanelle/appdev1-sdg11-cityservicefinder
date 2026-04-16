@@ -1,12 +1,26 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  template: `
+    <app-navbar />
+    <main>
+      <router-outlet />
+    </main>
+    <app-footer />
+  `,
+  styles: [`
+    main {
+      min-height: calc(100vh - 64px - 80px);
+      background: #F0F2F5;
+    }
+  `]
 })
-export class App {
-  protected readonly title = signal('cityservicefinder');
+export class AppComponent {
+  title = 'cityservicefinder';
 }

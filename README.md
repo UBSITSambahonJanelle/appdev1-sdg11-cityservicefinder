@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cityservicefinder
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
 
@@ -76,3 +77,6 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=======
+# appdev1-sdg11-cityservicefinder
+>>>>>>> f4a5ec4ab6728676e3efb65b95e262f3c124b3d0
