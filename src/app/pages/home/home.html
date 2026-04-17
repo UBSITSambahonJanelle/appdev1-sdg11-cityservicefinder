@@ -1,0 +1,50 @@
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🇺🇳 SDG 11 — Sustainable Cities</div>
+    <h1 class="hero-title">Your City, Safer Together</h1>
+    <p class="hero-sub">
+      Access emergency contacts, live weather, public transport, and community
+      reporting — built for Baguio City residents.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/city-services" class="btn-cta">Browse City Services</a>
+      <a routerLink="/about" class="btn-ghost">Learn about SDG 11</a>
+    </div>
+  </div>
+</section>
+
+<!-- Quick action cards -->
+<section class="quick-actions" aria-label="Quick navigation">
+  <div class="section-inner">
+    <h2 class="section-heading">Quick Access</h2>
+    <div class="quick-grid">
+      @for (link of quickLinks; track link.route) {
+        <a [routerLink]="link.route" class="quick-card" [class]="'accent-' + link.color">
+          <span class="quick-icon">{{ link.icon }}</span>
+          <span class="quick-label">{{ link.label }}</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Live weather -->
+<section class="weather-section" aria-labelledby="weather-heading">
+  <div class="section-inner">
+    <h2 class="section-heading" id="weather-heading">Current Conditions</h2>
+    <app-weather-widget />
+  </div>
+</section>
+
+<!-- SDG 11 mission strip -->
+<section class="mission-strip" aria-label="Our mission">
+  <div class="section-inner mission-inner">
+    <div class="mission-badge">🌏</div>
+    <div class="mission-text">
+      <strong>CitySafe Hub supports UN SDG 11</strong> — We believe every
+      Baguio resident deserves access to safety information and city services
+      without barriers.
+    </div>
+    <a routerLink="/about" class="mission-link">Read more →</a>
+  </div>
+</section>

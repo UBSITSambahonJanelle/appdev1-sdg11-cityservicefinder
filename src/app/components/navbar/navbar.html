@@ -1,0 +1,32 @@
+<p>navbar works!</p>
+<header class="navbar">
+  <div class="navbar-inner">
+    <!-- Brand -->
+    <a routerLink="/home" class="brand">
+      <span class="brand-icon">🏔️</span>
+      <span class="brand-text">CitySafe <strong>Hub</strong></span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <nav class="nav-links" [class.open]="menuOpen" aria-label="Main navigation">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      <a routerLink="/emergency" routerLinkActive="active">Emergency</a>
+      <a routerLink="/transport" routerLinkActive="active">Transport</a>
+      <a routerLink="/city-services" routerLinkActive="active">Services</a>
+      <a routerLink="/about" routerLinkActive="active">About SDG 11</a>
+    </nav>
+
+    <!-- Auth button -->
+    <div class="nav-actions">
+      @if (auth.isLoggedIn()) {
+        <span class="user-label">{{ auth.displayName() }}</span>
+        <button class="btn-outline" (click)="auth.logout()">Sign Out</button>
+      } @else {
+        <a routerLink="/login" class="btn-primary">Sign In</a>
+      }
+      <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
