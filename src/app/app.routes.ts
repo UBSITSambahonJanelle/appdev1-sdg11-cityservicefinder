@@ -1,18 +1,18 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 import { unsavedGuard } from './guards/unsaved.guard';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { AboutComponent } from './pages/about/about.component';
-import { EmergencyComponent } from './pages/emergency/emergency.component';
-import { TransportComponent } from './pages/transport/transport.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CityServicesComponent } from './pages/city-services/city-services.component';
-import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
-import { SavedServicesComponent } from './pages/saved-services/saved-services.component';
-import { ReportIssueComponent } from './pages/report-issue/report-issue.component';
+import { HomeComponent } from './pages/home/home';
+import { LoginComponent } from './pages/login/login';
+import { AboutComponent } from './pages/about/about';
+import { EmergencyComponent } from './pages/emergency/emergency';
+import { TransportComponent } from './pages/transport/transport';
+import { DashboardComponent } from './pages/dashboard/dashboard';
+import { CityServicesComponent } from './pages/city-services/city-services';
+import { ServiceDetailComponent } from './pages/service-detail/service-detail';
+import { SavedServicesComponent } from './pages/saved-services/saved-services';
+import { ReportIssueComponent } from './pages/report-issue/report-issue';
 
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotFoundComponent } from './pages/not-found/not-found';
 
 export const routes: Routes = [
   // Default redirect

@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { CityService as CityServiceModel } from '../models/service.model';
+import { CityService as CityServiceModel } from '../models/service';
 
 @Injectable({ providedIn: 'root' })
 export class CityService {
