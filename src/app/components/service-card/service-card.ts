@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CityService } from '../../models/service.model';
-
+import { CityService } from '../../models/service';
+import { TitleCasePipe } from '@angular/common';
 // Reusable card component — used in city-services page and dashboard
 // Demonstrates @Input / @Output with EventEmitter (required by rubric)
 @Component({
   selector: 'app-service-card',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TitleCasePipe],
   template: `
     <article class="service-card" [class]="'category-' + service.category">
       <div class="card-header">
