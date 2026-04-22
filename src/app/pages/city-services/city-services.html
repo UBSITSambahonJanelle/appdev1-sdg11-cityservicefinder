@@ -1,0 +1,9 @@
+<h2>City Services</h2>
+
+<div *ngFor="let service of services">
+  <app-service-card
+    [service]="service"
+    [isSaved]="isSaved(service.id)"
+    (toggleSave)="handleSave($event)">
+  </app-service-card>
+</div>
