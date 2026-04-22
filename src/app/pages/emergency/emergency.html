@@ -1,0 +1,18 @@
+<div class="emergency-page">
+  <div class="emergency-header">
+    <h1>Emergency Contacts</h1>
+    <p>Baguio City hotlines and emergency services. In a life-threatening emergency, always call <strong>911</strong> first.</p>
+  </div>
+  
+  <div class="contacts-grid">
+    <div class="contact-card" *ngFor="let contact of emergencyContacts">
+      <div class="contact-icon">{{ contact.icon }}</div>
+      <div class="contact-info">
+        <div class="contact-type">{{ contact.name }}</div>
+        <h3>{{ contact.organization }}</h3>
+        <p>{{ contact.description }}</p>
+        <a [href]="'tel:' + contact.phone" class="contact-phone">📞 {{ contact.phone }}</a>
+      </div>
+    </div>
+  </div>
+</div>

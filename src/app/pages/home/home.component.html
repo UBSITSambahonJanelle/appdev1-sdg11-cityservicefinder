@@ -1,0 +1,50 @@
+<div class="home-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Your City, Your Services</h1>
+      <p>Find emergency contacts, health services, public transport and more — all in one place for Baguio City residents.</p>
+      
+      <div class="search-bar">
+        <input 
+          type="text" 
+          placeholder="Search services, offices, hotlines..."
+          [(ngModel)]="searchQuery"
+          class="search-input"
+        />
+        <button (click)="onSearch()" class="search-btn">Search</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat" *ngFor="let stat of stats">
+      <div class="stat-value">{{ stat.value }}</div>
+      <div class="stat-label">{{ stat.label }}</div>
+    </div>
+  </div>
+  
+  <!-- Services Section -->
+  <section class="services-section">
+    <h2>Available Services</h2>
+    <div class="services-grid">
+      <app-service-card 
+        *ngFor="let service of services" 
+        [service]="service"
+        (toggleSave)="onToggleSave($event)">
+      </app-service-card>
+    </div>
+  </section>
+  
+  <!-- Quick Actions -->
+  <section class="quick-actions">
+    <h3>Quick Actions</h3>
+    <div class="action-buttons">
+      <a routerLink="/emergency" class="action-btn emergency">🚨 Emergency Contacts</a>
+      <a routerLink="/transport" class="action-btn transport">🚍 Jeepney Routes</a>
+      <a routerLink="/report" class="action-btn report">📝 Report an Issue</a>
+      <a routerLink="/saved" class="action-btn saved">⭐ Saved Services</a>
+    </div>
+  </section>
+</div>
