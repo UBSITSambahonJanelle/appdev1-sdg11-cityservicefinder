@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CityService } from '../../models/service';
+import { CityService as CityServiceModel } from '../../models/service';
 import { TitleCasePipe } from '@angular/common';
 // Reusable card component — used in city-services page and dashboard
 // Demonstrates @Input / @Output with EventEmitter (required by rubric)
@@ -165,7 +165,7 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class ServiceCardComponent {
 
-  @Input({ required: true }) service!: CityService;
+  @Input({ required: true }) service!: CityServiceModel;
   @Input() isSaved = false;
 
 
