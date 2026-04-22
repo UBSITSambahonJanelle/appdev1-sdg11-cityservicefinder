@@ -7,7 +7,7 @@ import { WeatherResponse, AirQualityResponse } from '../models/weather';
 export class WeatherService {
   private http = inject(HttpClient);
 
-  private readonly API_KEY = 'YOUR_API_KEY_HERE';
+  private readonly API_KEY = 'a356640f39e09f86eabebc34a008a9b7';
   private readonly BASE = 'https://api.openweathermap.org/data/2.5';
 
   private readonly LAT = 16.4023;
