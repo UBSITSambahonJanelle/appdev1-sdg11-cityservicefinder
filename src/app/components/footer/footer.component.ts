@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <span class="footer-logo">🏔️ CitySafe Hub</span>
+          <span class="footer-logo"> CitySafe Hub</span>
           <p class="footer-tagline">
             Making Baguio City safer, smarter, and more connected —
             one resident at a time.
