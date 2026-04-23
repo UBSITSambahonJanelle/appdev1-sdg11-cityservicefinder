@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 })
 export class TransportComponent {
   selectedFilter = 'All Routes';
-  
   filters = ['All Routes', 'Jeepney', 'Taxi', 'Bus'];
   
   routes = [
@@ -24,9 +23,5 @@ export class TransportComponent {
   get filteredRoutes() {
     if (this.selectedFilter === 'All Routes') return this.routes;
     return this.routes.filter(r => r.type === this.selectedFilter);
-  }
-  
-  setFilter(filter: string) {
-    this.selectedFilter = filter;
   }
 }

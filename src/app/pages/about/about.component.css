@@ -12,12 +12,12 @@
 .page-header h1 {
   font-size: 2rem;
   color: #1B4332;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .about-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
@@ -25,21 +25,26 @@
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .card h2 {
   color: #1B4332;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.target {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+.card ul {
+  list-style: none;
+  padding: 0;
 }
 
-.target h3 {
-  color: #D4622A;
-  margin-bottom: 0.5rem;
+.card li {
+  padding: 0.5rem 0;
+  color: #4A5568;
+}
+
+.card li:before {
+  content: "✓ ";
+  color: #3A7D44;
+  font-weight: bold;
 }

@@ -1,0 +1,25 @@
+<div class="transport-page">
+  <h1>Public Transport</h1>
+  <p>Jeepney routes, fares, and schedules for getting around Baguio City.</p>
+  
+  <div class="filters">
+    <button *ngFor="let filter of filters" 
+            (click)="selectedFilter = filter"
+            [class.active]="selectedFilter === filter">
+      {{ filter }}
+    </button>
+  </div>
+  
+  <div class="routes">
+    <div class="route-card" *ngFor="let route of filteredRoutes">
+      <div class="route-code">{{ route.code }}</div>
+      <h3>{{ route.name }}</h3>
+      <p>{{ route.route }}</p>
+      <div class="route-details">
+        <span>💰 {{ route.fare }}</span>
+        <span>🕐 {{ route.schedule }}</span>
+      </div>
+      <div class="route-stops">📍 {{ route.stops }}</div>
+    </div>
+  </div>
+</div>
