@@ -1,0 +1,168 @@
+.about {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  color: #1B4332;
+  margin-bottom: 0.5rem;
+}
+
+.about > p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* API Section */
+.api-section {
+  background: linear-gradient(135deg, #1B4332 0%, #2A5C44 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.api-section h2 {
+  margin-bottom: 1rem;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error {
+  text-align: center;
+  padding: 1rem;
+}
+
+.error p {
+  margin-bottom: 1rem;
+}
+
+.retry-btn {
+  background: white;
+  color: #1B4332;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.retry-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Success State */
+.country-info {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.info-row {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.info-row .label {
+  font-weight: bold;
+  width: 100px;
+}
+
+/* SDG Targets */
+.sdg-targets {
+  margin-bottom: 2rem;
+}
+
+.sdg-targets h2 {
+  margin-bottom: 1rem;
+  color: #1B4332;
+}
+
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.target {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.target:hover {
+  transform: translateY(-4px);
+}
+
+.target h3 {
+  color: #1B4332;
+  margin-bottom: 0.5rem;
+}
+
+.target p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Built By Section */
+.built-by {
+  background: #EEF5EF;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.built-by h2 {
+  color: #1B4332;
+  margin-bottom: 0.5rem;
+}
+
+.built-by p {
+  color: #666;
+  margin: 0.25rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about {
+    padding: 1rem;
+  }
+  
+  .target-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .info-row .label {
+    width: auto;
+  }
+}

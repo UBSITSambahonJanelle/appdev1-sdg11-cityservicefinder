@@ -1,0 +1,12 @@
+<div class="weather-card" *ngIf="!loading(); else loadingTemplate">
+  <div class="weather-temp">{{ temperature() }}°</div>
+  <div class="weather-condition">{{ condition() }}</div>
+  <div class="weather-stats">💧 Humidity {{ humidity() }}%</div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="weather-loading">
+    <div class="spinner"></div>
+    <span>Loading weather...</span>
+  </div>
+</ng-template>
