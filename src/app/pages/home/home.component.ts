@@ -28,4 +28,6 @@ export class HomeComponent {
   onToggleSave(serviceId: number) {
     console.log('Save toggled for service:', serviceId);
   }
+
+  
 }

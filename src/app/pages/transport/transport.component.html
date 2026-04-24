@@ -2,24 +2,33 @@
   <h1>Public Transport</h1>
   <p>Jeepney routes, fares, and schedules for getting around Baguio City.</p>
   
-  <div class="filters">
-    <button *ngFor="let filter of filters" 
-            (click)="selectedFilter = filter"
-            [class.active]="selectedFilter === filter">
+  <!-- Filter Buttons with Pill Design -->
+  <div class="filter-buttons">
+    <button 
+      *ngFor="let filter of filters" 
+      (click)="selectedFilter = filter"
+      [class.active]="selectedFilter === filter"
+      class="filter-btn">
       {{ filter }}
     </button>
   </div>
   
-  <div class="routes">
+  <!-- Routes List -->
+  <div class="routes-list">
     <div class="route-card" *ngFor="let route of filteredRoutes">
-      <div class="route-code">{{ route.code }}</div>
+      <div class="route-header">
+        <span class="route-code">{{ route.code }}</span>
+        <span class="route-badge">{{ route.type | uppercase }}</span>
+      </div>
       <h3>{{ route.name }}</h3>
-      <p>{{ route.route }}</p>
+      <p>{{ route.from }} → {{ route.to }}</p>
       <div class="route-details">
-        <span>💰 {{ route.fare }}</span>
+        <span>💰 {{ route.fare | currency:'PHP':'symbol-narrow' }}</span>
         <span>🕐 {{ route.schedule }}</span>
       </div>
-      <div class="route-stops">📍 {{ route.stops }}</div>
+      <div class="route-stops">
+        📍 {{ route.stops }}
+      </div>
     </div>
   </div>
 </div>

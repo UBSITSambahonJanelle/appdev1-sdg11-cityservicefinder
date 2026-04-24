@@ -1,14 +1,20 @@
 .home {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  min-height: calc(100vh - 200px);
 }
 
-/* Hero */
+/* Hero - Full Width */
 .hero {
   background: linear-gradient(135deg, #1B4332, #2A5C44);
   color: white;
   text-align: center;
-  padding: 50px 20px;
+  padding: 60px 20px;
+  width: 100%;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .hero h1 {
@@ -17,9 +23,8 @@
 }
 
 .hero p {
-  max-width: 600px;
-  margin: 0 auto 20px;
   font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 .search-box {
@@ -46,60 +51,71 @@
   cursor: pointer;
 }
 
-/* Stats */
+/* Stats - Full Width with background */
 .stats {
   display: flex;
   justify-content: space-around;
   background: white;
+  padding: 25px 20px;
   margin: 20px;
-  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: auto;
 }
 
-.stat {
-  text-align: center;
-}
-
-.stat-value {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #1B4332;
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  color: #666;
-}
-
-/* Services */
+/* Services Section */
 .services {
   padding: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .services h2 {
   margin-bottom: 20px;
-  font-size: 1.3rem;
+  padding-left: 10px;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 20px;
+  width: 100%;
 }
 
-/* Widgets */
+/* Widgets - Full width */
 .widgets {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  padding: 0 20px 40px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .services, .widgets {
+    max-width: 100%;
+    padding: 20px;
+  }
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 40px 15px;
+  }
+  .hero h1 {
+    font-size: 1.5rem;
+  }
   .stats {
     flex-direction: column;
     gap: 15px;
+    margin: 15px;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
   }
   .widgets {
     grid-template-columns: 1fr;

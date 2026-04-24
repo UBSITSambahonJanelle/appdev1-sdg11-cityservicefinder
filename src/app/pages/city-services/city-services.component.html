@@ -2,18 +2,23 @@
   <h1>City Services</h1>
   <p>Emergency, health, welfare, and employment services in Baguio City.</p>
   
-  <div class="filters">
-    <button *ngFor="let filter of filters" 
-            (click)="selectedFilter = filter"
-            [class.active]="selectedFilter === filter">
+  <!-- Filter Buttons with Pill Design -->
+  <div class="filter-buttons">
+    <button 
+      *ngFor="let filter of filters" 
+      (click)="selectedFilter = filter"
+      [class.active]="selectedFilter === filter"
+      class="filter-btn">
       {{ filter }}
     </button>
   </div>
   
+  <!-- Services Grid -->
   <div class="services-grid">
-    <app-service-card *ngFor="let service of filteredServices" 
-                      [service]="service"
-                      (toggleSave)="onToggleSave($event)">
+    <app-service-card 
+      *ngFor="let service of filteredServices" 
+      [service]="service"
+      (toggleSave)="onToggleSave($event)">
     </app-service-card>
   </div>
 </div>

@@ -12,10 +12,10 @@ Soledad, Marc Heshua -   UI Designer
 Castrojo, Bruce          Data Engineer
 
 ## About the App
-CitySafe Hub helps residents of Baguio City access emergency contacts, real-time weather, public transport information, and community incident reporting — all in one place. This aligns with SDG 11's goal of making cities inclusive, safe, resilient, and sustainable.
+City Service Finder helps residents of Baguio City access emergency contacts, real-time weather, public transport information, and community incident reporting — all in one place. This aligns with SDG 11's goal of making cities inclusive, safe, resilient, and sustainable.
 
 # Features 
--Live weather and air quality from OpenWeatherMap API
+-Live weather data (simulated - API ready)
 -Emergency contacts and hotlines directory
 -Public transport route guide
 -Community issue reporting

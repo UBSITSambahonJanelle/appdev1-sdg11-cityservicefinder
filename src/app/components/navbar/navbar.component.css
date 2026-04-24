@@ -1,13 +1,17 @@
 .navbar {
   background: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  padding: 10px 0;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .nav-container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,4 +74,21 @@
   background: #c0392b;
   border: none;
   color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .nav-container {
+    max-width: 100%;
+    padding: 12px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+  }
+  .nav-links {
+    justify-content: center;
+  }
 }

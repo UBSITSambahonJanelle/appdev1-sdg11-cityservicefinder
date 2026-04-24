@@ -6,6 +6,7 @@ import { CityServicesComponent } from './pages/city-services/city-services.compo
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutComponent } from './pages/about/about.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,7 +14,8 @@ export const routes: Routes = [
   { path: 'emergency', component: EmergencyComponent },
   { path: 'transport', component: TransportComponent },
   { path: 'city-services', component: CityServicesComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'city-services/:id', component: CityServicesComponent },  // URL parameter
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },  // Protected route
   { path: 'about', component: AboutComponent },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent }  // Wildcard route
 ];

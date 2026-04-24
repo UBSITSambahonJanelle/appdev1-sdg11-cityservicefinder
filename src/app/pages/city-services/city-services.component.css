@@ -1,36 +1,74 @@
 .city-services {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
 }
 
 .city-services h1 {
-  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #1B4332;
+  margin-bottom: 0.5rem;
 }
 
-.filters {
+.city-services > p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Filter Buttons Design */
+.filter-buttons {
   display: flex;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 1rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
 }
 
-.filters button {
-  padding: 8px 20px;
-  border: 1px solid #ddd;
+.filter-btn {
+  padding: 0.6rem 1.5rem;
+  border: 2px solid #1B4332;
   background: white;
-  border-radius: 20px;
+  color: #1B4332;
+  border-radius: 50px;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
 }
 
-.filters button.active {
+.filter-btn:hover {
   background: #1B4332;
   color: white;
-  border-color: #1B4332;
+  transform: translateY(-2px);
 }
 
+.filter-btn.active {
+  background: #1B4332;
+  color: white;
+  box-shadow: 0 2px 8px rgba(27, 67, 50, 0.3);
+}
+
+/* Services Grid */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .city-services {
+    padding: 1rem;
+  }
+  
+  .filter-buttons {
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
