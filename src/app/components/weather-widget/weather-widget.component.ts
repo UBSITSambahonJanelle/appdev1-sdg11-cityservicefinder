@@ -1,6 +1,5 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-weather-widget',
@@ -10,22 +9,15 @@ import { WeatherService } from '../../services/weather.service';
   styleUrls: ['./weather-widget.component.css']
 })
 export class WeatherWidgetComponent implements OnInit {
-
-  private weatherService = inject(WeatherService);
-
-  weather = signal<any>(null);
   loading = signal(true);
-
+  temperature = signal(18);
+  condition = signal('Light Fog');
+  humidity = signal(83);
+  
   ngOnInit() {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const lat = pos.coords.latitude;
-      const lon = pos.coords.longitude;
-
-      this.weatherService.getWeatherByCoordinates(lat, lon)
-        .subscribe((data: any) => {
-          this.weather.set(data);
-          this.loading.set(false);
-        });
-    });
+    // Simulate loading for Week 1-2
+    setTimeout(() => {
+      this.loading.set(false);
+    }, 1800);
   }
 }
