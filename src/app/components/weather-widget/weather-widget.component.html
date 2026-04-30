@@ -1,12 +1,17 @@
-<div class="weather-card" *ngIf="!loading(); else loadingTemplate">
-  <div class="weather-temp">{{ temperature() }}°</div>
-  <div class="weather-condition">{{ condition() }}</div>
-  <div class="weather-stats">💧 Humidity {{ humidity() }}%</div>
-</div>
+<div *ngIf="loading()">Loading weather...</div>
 
-<ng-template #loadingTemplate>
-  <div class="weather-loading">
-    <div class="spinner"></div>
-    <span>Loading weather...</span>
+<div *ngIf="!loading() && weather()">
+
+  <div class="weather-temp">
+    {{ weather().main.temp }}°C
   </div>
-</ng-template>
+
+  <div class="weather-condition">
+    {{ weather().weather[0].description }}
+  </div>
+
+  <div class="weather-stats">
+     Humidity {{ weather().main.humidity }}%
+  </div>
+
+</div>
