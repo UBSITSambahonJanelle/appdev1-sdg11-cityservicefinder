@@ -1,12 +1,41 @@
-<div class="weather-card" *ngIf="!loading(); else loadingTemplate">
-  <div class="weather-temp">{{ temperature() }}°</div>
-  <div class="weather-condition">{{ condition() }}</div>
-  <div class="weather-stats">💧 Humidity {{ humidity() }}%</div>
-</div>
 
-<ng-template #loadingTemplate>
-  <div class="weather-loading">
-    <div class="spinner"></div>
-    <span>Loading weather...</span>
+<div class="weather-card">
+  <div class="weather-header">
+    <span class="weather-loc">📍 BAGUIO CITY</span>
+    <span class="weather-time">{{ today | date:'h:mm a' }}</span>
   </div>
-</ng-template>
+
+
+  @if (weather$ | async; as w) {
+    
+    <div class="weather-main">
+      <div class="weather-temp">{{ w.main.temp | number:'1.0-0' }}°</div>
+      <div>
+       
+        <div class="weather-cond">{{ w.weather[0].description | titlecase }}</div>
+        <div class="weather-feels">Feels like {{ w.main.feels_like | number:'1.0-0' }}°C</div>
+      </div>
+    </div>
+    <div class="weather-details">
+      <div><span class="wd-label">Humidity</span><span class="wd-val">{{ w.main.humidity }}%</span></div>
+      <div><span class="wd-label">Wind</span><span class="wd-val">{{ w.wind.speed | number:'1.0-1' }} m/s</span></div>
+      <div><span class="wd-label">Visibility</span><span class="wd-val">{{ w.visibility / 1000 | number:'1.0-1' }} km</span></div>
+      <div><span class="wd-label">Pressure</span><span class="wd-val">{{ w.main.pressure }} hPa</span></div>
+    </div>
+
+  } @else if (loadError) {
+    
+    <div class="weather-error" role="alert">
+      <p class="error-title">⚠️ Weather unavailable</p>
+      <p class="error-msg">{{ loadError }}</p>
+      <p class="error-hint">Add your OpenWeatherMap key to environment.ts</p>
+    </div>
+
+  } @else {
+    
+    <div class="weather-loading" aria-live="polite">
+      <div class="spinner"></div>
+      <span>Fetching conditions…</span>
+    </div>
+  }
+</div>

@@ -83,7 +83,7 @@
   width: 100%;
 }
 
-/* Widgets - Full width */
+
 .widgets {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -94,7 +94,7 @@
   margin: 0 auto;
 }
 
-/* Responsive */
+
 @media (max-width: 1200px) {
   .services, .widgets {
     max-width: 100%;

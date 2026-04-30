@@ -1,9 +1,0 @@
-<h2>Saved Services</h2>
-
-<div *ngFor="let service of savedServices()">
-  <app-service-card
-    [service]="service"
-    [isSaved]="true"
-    (toggleSave)="handleSave($event)">
-  </app-service-card>
-</div>

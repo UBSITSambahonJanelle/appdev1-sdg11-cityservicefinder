@@ -1,23 +1,33 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { WeatherService } from '../../services/weather.service';
+import { Observable } from 'rxjs';
+import { WeatherResponse } from '../../models/weather';
 
 @Component({
   selector: 'app-weather-widget',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe],
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.css']
 })
 export class WeatherWidgetComponent implements OnInit {
-  loading = signal(true);
-  temperature = signal(18);
-  condition = signal('Light Fog');
-  humidity = signal(83);
+  private weatherService = inject(WeatherService);
+
   
-  ngOnInit() {
-    // Simulate loading for Week 1-2
-    setTimeout(() => {
-      this.loading.set(false);
-    }, 1800);
+  weather$!: Observable<WeatherResponse>;
+
+  
+  loadError = '';
+
+  today = new Date();
+
+  ngOnInit(): void {
+    this.weather$ = this.weatherService.getWeatherByCoordinates();
+    
+    this.weather$.subscribe({
+      error: (err: Error) => { this.loadError = err.message; }
+    });
   }
 }
