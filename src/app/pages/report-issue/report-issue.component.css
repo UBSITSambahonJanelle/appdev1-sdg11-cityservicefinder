@@ -1,0 +1,17 @@
+
+.report-issue { max-width: 600px; margin: 0 auto; padding: 2rem 1.5rem; }
+h1 { font-size: 1.4rem; font-weight: 700; color: #1C1E20; margin-bottom: 0.4rem; }
+.sub { font-size: 0.88rem; color: #6A7A72; line-height: 1.6; margin-bottom: 1.75rem; }
+.report-form { background: #fff; border-radius: 12px; padding: 2rem; border: 1px solid #E4E8EC; display: flex; flex-direction: column; gap: 1.2rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+label { font-size: 0.78rem; font-weight: 700; color: #1B4332; }
+input, select, textarea { padding: 0.62rem 0.88rem; border: 1.5px solid #D0D8D4; border-radius: 7px; font-size: 0.88rem; color: #1C1E20; background: #FAFBFA; font-family: inherit; outline: none; }
+input:focus, select:focus, textarea:focus { border-color: #1B4332; }
+textarea { resize: vertical; }
+.char-count { font-size: 0.73rem; color: #9AA0A6; align-self: flex-end; }
+.form-error { font-size: 0.82rem; color: #C0392B; background: #FCEAE8; border-radius: 7px; padding: 0.5rem 0.85rem; }
+.btn-submit { background: #D4622A; color: #fff; border: none; padding: 0.75rem; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+.success-card { text-align: center; background: #fff; border-radius: 12px; padding: 3rem 2rem; border: 1px solid #E4E8EC; }
+.success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.btn-new { background: #1B4332; color: #fff; border: none; padding: 0.65rem 1.5rem; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: inherit; margin-top: 1rem; }

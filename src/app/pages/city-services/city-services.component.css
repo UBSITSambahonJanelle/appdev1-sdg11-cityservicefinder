@@ -4,7 +4,7 @@
   padding: 2rem;
 }
 
-.city-services h1 {
+h1 {
   font-size: 1.8rem;
   color: #1B4332;
   margin-bottom: 0.5rem;
@@ -15,7 +15,7 @@
   margin-bottom: 2rem;
 }
 
-/* Filter Buttons Design */
+
 .filter-buttons {
   display: flex;
   gap: 1rem;
@@ -47,7 +47,7 @@
   box-shadow: 0 2px 8px rgba(27, 67, 50, 0.3);
 }
 
-/* Services Grid */
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

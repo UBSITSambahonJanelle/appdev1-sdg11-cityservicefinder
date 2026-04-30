@@ -1,0 +1,20 @@
+<div class="saved-services">
+  <h1>⭐ Saved Services</h1>
+
+  @if (cityService.savedServices().length === 0) {
+    <div class="empty-state">
+      <p>Nothing saved yet.</p>
+      <p>Browse <a routerLink="/city-services">City Services</a> and tap ☆ Save to add them here.</p>
+    </div>
+  } @else {
+    <div class="saved-grid">
+      @for (service of cityService.savedServices(); track service.id) {
+        <app-service-card
+          [service]="service"
+          [isSaved]="true"
+          (toggleSave)="onToggleSave($event)">
+        </app-service-card>
+      }
+    </div>
+  }
+</div>
