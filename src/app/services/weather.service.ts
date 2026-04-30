@@ -23,8 +23,8 @@ export class WeatherService {
     return this.http.get<WeatherResponse>(url);
   }
 
-    getWeatherByCoordinates(lat: number, lon: number): Observable<WeatherResponse> {
-    const url = `${this.baseUrl}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${this.apiKey}`;
+  getWeatherByCoordinates(): Observable<WeatherResponse> {
+    const url = `${this.baseUrl}/weather?lat=${this.lat}&lon=${this.lon}&units=metric&appid=${this.apiKey}`;
     return this.http.get<WeatherResponse>(url);
   }
 
