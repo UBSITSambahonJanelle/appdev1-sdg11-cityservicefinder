@@ -1,0 +1,49 @@
+<div class="report-issue">
+  <h1>📋 Report a Community Issue</h1>
+  <p class="sub">Help keep Baguio City safe by reporting hazards, damaged infrastructure, or public safety concerns.</p>
+
+  @if (submitted) {
+    <div class="success-card">
+      <p class="success-icon">✅</p>
+      <h2>Report submitted</h2>
+      <p>Thank you for helping improve Baguio City.</p>
+      <button class="btn-new" (click)="reset()">Submit Another Report</button>
+    </div>
+
+  } @else {
+    <div class="report-form">
+      <div class="form-group">
+        <label for="cat">Issue Category</label>
+        <select id="cat" [value]="category" (change)="category = $any($event.target).value">
+          <option value="">Select a category</option>
+          @for (c of categories; track c) {
+            <option [value]="c">{{ c }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="loc">Location</label>
+        <input id="loc" type="text"
+               placeholder="e.g. Session Road near Burnham Park"
+               [value]="location"
+               (input)="location = $any($event.target).value">
+      </div>
+
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <textarea id="desc" rows="5"
+                  placeholder="Describe the issue — what you saw, when it happened, and why it matters."
+                  [value]="description"
+                  (input)="description = $any($event.target).value"></textarea>
+        <span class="char-count">{{ description.length }} characters</span>
+      </div>
+
+      @if (errorMsg) {
+        <p class="form-error" role="alert">⚠️ {{ errorMsg }}</p>
+      }
+
+      <button class="btn-submit" (click)="submit()">Submit Report</button>
+    </div>
+  }
+</div>
