@@ -1,6 +1,8 @@
+<!-- src/app/pages/about/about.component.html -->
 <div class="about">
   <h1>Sustainable Cities and Communities</h1>
   <p>SDG 11 — Make cities inclusive, safe, resilient and sustainable</p>
+<<<<<<< Updated upstream
   
   <!-- API Data Section -->
   <div class="api-section">
@@ -45,24 +47,41 @@
         <span class="value">{{ countryData()?.area | number }} km²</span>
       </div>
     </div>
+=======
+
+  <div class="api-section">
+    <h2>🇵🇭 Philippines Data (Live REST Countries API)</h2>
+
+    <ng-container *ngIf="philippinesState$ | async as state">
+
+      <div class="loading" *ngIf="state.loading">
+        <div class="spinner"></div>
+        <p>Loading Philippines data...</p>
+      </div>
+
+      <div class="error" *ngIf="state.error && !state.loading">
+        <p>⚠️ Unable to fetch live data. {{ state.error }}</p>
+      </div>
+
+      <div class="country-info" *ngIf="state.data as country">
+        <div class="info-row"><span class="label">Country</span><span class="value">{{ country.name.common }}</span></div>
+        <div class="info-row"><span class="label">Capital</span><span class="value">{{ country.capital[0] }}</span></div>
+        <div class="info-row"><span class="label">Population</span><span class="value">{{ country.population | number }}</span></div>
+        <div class="info-row"><span class="label">Region</span><span class="value">{{ country.region }}</span></div>
+        <div class="info-row"><span class="label">Area</span><span class="value">{{ country.area | number }} km²</span></div>
+      </div>
+
+    </ng-container>
+>>>>>>> Stashed changes
   </div>
   
   <!-- SDG Targets -->
   <div class="sdg-targets">
     <h2>SDG 11 Targets Addressed</h2>
     <div class="target-grid">
-      <div class="target">
-        <h3>🏍️ 11.2 — Transport</h3>
-        <p>Safe, affordable, accessible transport systems for all residents</p>
-      </div>
-      <div class="target">
-        <h3>🛡️ 11.5 — Disaster Resilience</h3>
-        <p>Reduce deaths and losses from disasters</p>
-      </div>
-      <div class="target">
-        <h3>🌿 11.6 — Environmental Impact</h3>
-        <p>Reduce environmental impact and improve air quality</p>
-      </div>
+      <div class="target"><h3>11.2 — Transport</h3><p>Safe, affordable transport for all residents</p></div>
+      <div class="target"><h3>11.5 — Disaster Resilience</h3><p>Reduce deaths and losses from disasters</p></div>
+      <div class="target"><h3>11.6 — Environmental Impact</h3><p>Reduce environmental impact and improve air quality</p></div>
     </div>
   </div>
   

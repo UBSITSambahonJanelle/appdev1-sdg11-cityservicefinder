@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <div class="weather-card" *ngIf="!loading(); else loadingTemplate">
   <div class="weather-temp">{{ temperature() }}°</div>
   <div class="weather-condition">{{ condition() }}</div>
@@ -10,3 +11,38 @@
     <span>Loading weather...</span>
   </div>
 </ng-template>
+=======
+<div class="weather-card">
+  <div class="weather-header">
+    <span class="weather-loc">📍 BAGUIO CITY</span>
+  </div>
+
+  <ng-container *ngIf="weatherState$ | async as state">
+
+    <div class="weather-loading" *ngIf="state.loading">
+      <div class="spinner"></div>
+      <span>Fetching conditions…</span>
+    </div>
+
+    <div class="weather-error" *ngIf="state.error && !state.loading">
+      <p>⚠️ Weather unavailable</p>
+      <p>{{ state.error }}</p>
+    </div>
+
+    <div *ngIf="state.data as w">
+      <div class="weather-main">
+        <div class="weather-temp">{{ w.main.temp | number:'1.0-0' }}°C</div>
+        <div>
+          <div class="weather-cond">{{ w.weather[0].description | titlecase }}</div>
+          <div class="weather-feels">Feels like {{ w.main.feels_like | number:'1.0-0' }}°C</div>
+        </div>
+      </div>
+      <div class="weather-details">
+        <div><span class="wd-label">Humidity</span><span class="wd-val">{{ w.main.humidity }}%</span></div>
+        <div><span class="wd-label">Wind</span><span class="wd-val">{{ w.wind.speed | number:'1.0-1' }} m/s</span></div>
+      </div>
+    </div>
+
+  </ng-container>
+</div>
+>>>>>>> Stashed changes

@@ -1,0 +1,42 @@
+<div class="service-detail">
+  <a routerLink="/city-services" class="back-link">← Back to City Services</a>
+
+  @if (service()) {
+    <div class="detail-card">
+      <div class="detail-header">
+        <div>
+          <span class="cat-tag">{{ service()!.category | uppercase }}</span>
+          <h1>{{ service()!.name }}</h1>
+        </div>
+        <span class="status-badge" [class.open]="service()!.isOpen">
+          {{ service()!.isOpen ? 'Open Now' : 'Closed' }}
+        </span>
+      </div>
+
+      <p class="detail-desc">{{ service()!.description }}</p>
+
+      <div class="detail-fields">
+        <div class="d-field"><span class="d-label">📍 Address</span><span>{{ service()!.address }}</span></div>
+        <div class="d-field"><span class="d-label">🕐 Hours</span><span>{{ service()!.hours }}</span></div>
+        <div class="d-field">
+          <span class="d-label">📞 Phone</span>
+          <a [href]="'tel:' + service()!.phone" class="phone-link">{{ service()!.phone }}</a>
+        </div>
+      </div>
+
+      <div class="detail-actions">
+        <a [href]="'tel:' + service()!.phone" class="btn-call">📞 Call Now</a>
+        <button class="btn-save" [class.saved]="isSaved()" (click)="toggleSave()">
+          {{ isSaved() ? '★ Saved' : '☆ Save Service' }}
+        </button>
+      </div>
+    </div>
+
+  } @else {
+    <div class="not-found">
+      <h2>Service not found</h2>
+      <p>No service exists with ID {{ id }}.</p>
+      <a routerLink="/city-services" class="btn-back">Browse All Services</a>
+    </div>
+  }
+</div>
