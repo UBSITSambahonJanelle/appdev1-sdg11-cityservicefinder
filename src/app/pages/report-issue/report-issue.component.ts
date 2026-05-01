@@ -1,5 +1,3 @@
-
-
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HasUnsavedChanges } from '../../guards/unsaved.guard';
@@ -29,7 +27,6 @@ export class ReportIssueComponent implements HasUnsavedChanges {
     'Other',
   ];
 
-  
   hasUnsavedChanges(): boolean {
     return (this.description.trim().length > 0 || this.location.trim().length > 0) && !this.submitted;
   }
@@ -41,7 +38,6 @@ export class ReportIssueComponent implements HasUnsavedChanges {
     }
     this.errorMsg  = '';
     this.submitted = true;
-    console.log('Report submitted:', { category: this.category, location: this.location, description: this.description });
   }
 
   reset(): void {
