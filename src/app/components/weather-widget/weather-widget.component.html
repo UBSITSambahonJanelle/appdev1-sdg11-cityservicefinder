@@ -5,10 +5,10 @@
   <div class="weather-stats">💧 Humidity {{ humidity() }}%</div>
 </div>
 
-<ng-template #loadingTemplate>
-  <div class="weather-loading">
-    <div class="spinner"></div>
-    <span>Loading weather...</span>
+<div class="weather-card">
+  <div class="weather-header">
+    <span class="weather-loc">📍 BAGUIO CITY</span>
+    <span class="weather-time">{{ today | date:'h:mm a' }}</span>
   </div>
 </ng-template>
 =======

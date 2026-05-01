@@ -17,22 +17,28 @@ interface WeatherState {
 @Component({
   selector: 'app-weather-widget',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe],
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.css']
 })
 <<<<<<< Updated upstream
 export class WeatherWidgetComponent implements OnInit {
-  loading = signal(true);
-  temperature = signal(18);
-  condition = signal('Light Fog');
-  humidity = signal(83);
+  private weatherService = inject(WeatherService);
+
   
-  ngOnInit() {
-    // Simulate loading for Week 1-2
-    setTimeout(() => {
-      this.loading.set(false);
-    }, 1800);
+  weather$!: Observable<WeatherResponse>;
+
+  
+  loadError = '';
+
+  today = new Date();
+
+  ngOnInit(): void {
+    this.weather$ = this.weatherService.getWeatherByCoordinates();
+    
+    this.weather$.subscribe({
+      error: (err: Error) => { this.loadError = err.message; }
+    });
   }
 =======
 export class WeatherWidgetComponent {

@@ -6,29 +6,42 @@
   
   <!-- API Data Section -->
   <div class="api-section">
-    <h2>🇵🇭 Philippines Data (Live API)</h2>
-    
-    <!-- Loading State -->
-    <div *ngIf="loading()" class="loading">
-      <div class="spinner"></div>
-      <p>Loading Philippines data from REST Countries API...</p>
+    <div class="api-tag">
+      <span class="live-dot"></span> Live data — REST Countries API
     </div>
-    
-    <!-- Error State -->
-    <div *ngIf="error() && !loading()" class="error">
-      <p>⚠️ Unable to fetch live data. Please try again.</p>
-      <button (click)="fetchPhilippinesData()" class="retry-btn">Retry</button>
-    </div>
-    
-    <!-- Success State -->
-    <div *ngIf="countryData() && !loading() && !error()" class="country-info">
-      <div class="info-row">
-        <span class="label">Country:</span>
-        <span class="value">{{ countryData()?.name?.common }}</span>
+    <h2>🇵🇭 Philippines Data</h2>
+
+    @if (philippines$ | async; as countries) {
+      @if (countries && countries[0]) {
+        <div class="country-info">
+          <div class="info-grid">
+            <div class="info-row">
+              <span class="label">Country:</span>
+              <span class="value">{{ countries[0].name.common }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Capital:</span>
+              <span class="value">{{ countries[0].capital[0] }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Population:</span>
+              <span class="value">{{ countries[0].population | number }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Region:</span>
+              <span class="value">{{ countries[0].region }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    } @else if (countryError) {
+      <div class="error-state">
+        <p>⚠️ {{ countryError }}</p>
       </div>
-      <div class="info-row">
-        <span class="label">Capital:</span>
-        <span class="value">{{ countryData()?.capital?.[0] }}</span>
+    } @else {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <span>Loading Philippines data...</span>
       </div>
       <div class="info-row">
         <span class="label">Population:</span>
@@ -74,8 +87,7 @@
     </ng-container>
 >>>>>>> Stashed changes
   </div>
-  
-  <!-- SDG Targets -->
+
   <div class="sdg-targets">
     <h2>SDG 11 Targets Addressed</h2>
     <div class="target-grid">
@@ -84,7 +96,7 @@
       <div class="target"><h3>11.6 — Environmental Impact</h3><p>Reduce environmental impact and improve air quality</p></div>
     </div>
   </div>
-  
+
   <div class="built-by">
     <h2>Built by</h2>
     <p>University of Baguio — School of Information Technology</p>

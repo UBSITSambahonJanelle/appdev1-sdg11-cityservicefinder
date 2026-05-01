@@ -1,28 +1,50 @@
+
+
 <div class="dashboard">
   <div class="dashboard-header">
-    <h1>Dashboard</h1>
+    <div>
+      <h1>Dashboard</h1>
+    
+      <p class="dash-date">{{ today | date:'EEEE, MMMM d, y' }} — Baguio City</p>
+    </div>
+    <a routerLink="/report" class="btn-report">+ Report an Issue</a>
   </div>
-  
+
   <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-number">3</div>
-      <div class="stat-title">Health</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">1</div>
-      <div class="stat-title">Welfare</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">2</div>
-      <div class="stat-title">Employment</div>
-    </div>
+    @for (stat of stats; track stat.title) {
+      <div class="stat-card" [style.border-top-color]="stat.color">
+        <div class="stat-number">{{ stat.number }}</div>
+        <div class="stat-title">{{ stat.title }}</div>
+      </div>
+    }
   </div>
 
   <div class="dashboard-widgets">
     <app-weather-widget></app-weather-widget>
+
+   
     <div class="saved-section">
-      <h3>⭐ Saved Services</h3>
-      <p>No saved services yet. <a routerLink="/city-services">Browse City Services →</a></p>
+      <div class="saved-header">
+        <h3>⭐ Saved Services</h3>
+        <a routerLink="/saved" class="see-all">See all →</a>
+      </div>
+
+      @if (cityService.savedServices().length === 0) {
+        <p class="no-saved">
+          No saved services yet.
+          <a routerLink="/city-services">Browse City Services →</a>
+        </p>
+      } @else {
+        <div class="saved-list">
+          @for (svc of cityService.savedServices(); track svc.id) {
+            <app-service-card
+              [service]="svc"
+              [isSaved]="true"
+              (toggleSave)="onToggleSave($event)">
+            </app-service-card>
+          }
+        </div>
+      }
     </div>
   </div>
 

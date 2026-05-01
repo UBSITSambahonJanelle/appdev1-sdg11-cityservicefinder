@@ -8,28 +8,33 @@ import { environment } from '../environments/environment/environment';
 >>>>>>> Stashed changes
 
 export interface Country {
-  name: { common: string };
+  name: { common: string; official: string };
   capital: string[];
   population: number;
   region: string;
   subregion: string;
   area: number;
-  flags: { png: string; svg: string };
-  currencies: any;
-  languages: any;
+  flags: { png: string; svg: string; alt?: string };
+  currencies: Record<string, { name: string; symbol: string }>;
+  languages: Record<string, string>;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class CountriesService {
   private http = inject(HttpClient);
   private apiUrl = environment.restCountriesBase;
 
+  // Get Philippines data
   getPhilippinesData(): Observable<Country[]> {
-    return this.http.get<Country[]>(`${this.apiUrl}/name/philippines`);
+    return this.http.get<Country[]>(`${this.apiUrl}/alpha/PHL`).pipe(
+      catchError(err => {
+        console.error('CountriesService error:', err);
+        return throwError(() => new Error('Could not load country data.'));
+      })
+    );
   }
 
+  // Get country by code (e.g., 'PHL', 'JPN', 'USA')
   getCountryByCode(code: string): Observable<Country[]> {
 <<<<<<< Updated upstream
     return this.http.get<Country[]>(`${this.apiUrl}/alpha/${code}`);
