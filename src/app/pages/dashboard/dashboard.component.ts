@@ -1,4 +1,3 @@
-
 import { Component, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -21,17 +20,14 @@ export class DashboardComponent {
   today = new Date();
 
   stats = [
-    { number: 3, title: 'Emergency', color: '#C0392B' },
-    { number: 1, title: 'Health',    color: '#5B8FA8' },
-    { number: 1, title: 'Welfare',   color: '#3A7D44' },
-    { number: 1, title: 'Employment',color: '#D4622A' },
+    { number: 3, title: 'Emergency',  color: '#C0392B' },
+    { number: 1, title: 'Health',     color: '#5B8FA8' },
+    { number: 1, title: 'Welfare',    color: '#3A7D44' },
+    { number: 1, title: 'Employment', color: '#D4622A' },
   ];
 
- 
   private savedEffect = effect(() => {
-    const count = this.cityService.savedServices().length;
-    
-    console.log(`[Dashboard effect] Saved services count: ${count}`);
+    const _count = this.cityService.savedServices().length;
   });
 
   onToggleSave(id: number): void {
