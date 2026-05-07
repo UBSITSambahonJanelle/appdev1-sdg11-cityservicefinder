@@ -102,6 +102,87 @@
   }
 }
 
+/* View Details Link - Better Design */
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: white;
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.view-detail-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: #1B4332;
+  text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  margin-right: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border-radius: 20px;
+}
+
+.view-detail-link:hover {
+  color: #D4622A;
+  gap: 0.5rem;
+}
+
+.view-detail-link::after {
+  content: "→";
+  transition: transform 0.2s;
+}
+
+.view-detail-link:hover::after {
+  transform: translateX(3px);
+}
+
+/* See All Button */
+.see-all {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.see-all a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #1B4332;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 40px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.see-all a:hover {
+  background: #D4622A;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  gap: 0.7rem;
+}
+
+.see-all a::after {
+  content: "→";
+  transition: transform 0.2s;
+}
+
+.see-all a:hover::after {
+  transform: translateX(4px);
+} 
 @media (max-width: 768px) {
   .hero {
     padding: 40px 15px;
@@ -120,4 +201,35 @@
   .widgets {
     grid-template-columns: 1fr;
   }
+
+  .card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.view-detail-link {
+  font-size: 0.78rem;
+  color: #1B4332;
+  text-align: right;
+  text-decoration: none;
+  padding: 0 4px;
+}
+
+.view-detail-link:hover { text-decoration: underline; }
+
+.see-all {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.see-all a {
+  color: #1B4332;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.see-all a:hover { text-decoration: underline; }
+
 }

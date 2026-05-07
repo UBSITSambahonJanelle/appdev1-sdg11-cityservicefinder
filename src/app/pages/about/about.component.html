@@ -1,69 +1,36 @@
-<div class="about">
-  <h1>Sustainable Cities and Communities</h1>
-  <p class="about-sub">SDG 11 — Make cities inclusive, safe, resilient and sustainable</p>
+<main class="about" aria-label="About SDG 11 and this application">
+  <header class="about-hero">
+    <h1>Sustainable Cities and Communities</h1>
+    <p>SDG Goal 11 — Make cities inclusive, safe, resilient and sustainable.</p>
+  </header>
 
-  <div class="api-section">
-    <div class="api-tag">
-      <span class="live-dot"></span> Live data — REST Countries API
-    </div>
-    <h2>🇵🇭 Philippines Data</h2>
-
+  <section class="api-section" aria-label="Philippines country data">
+    <h2>🇵🇭 Philippines at a Glance</h2>
     @if (philippines$ | async; as countries) {
       @if (countries && countries[0]) {
         <div class="country-info">
-          <div class="info-grid">
-            <div class="info-row">
-              <span class="label">Country:</span>
-              <span class="value">{{ countries[0].name.common }}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Capital:</span>
-              <span class="value">{{ countries[0].capital[0] }}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Population:</span>
-              <span class="value">{{ countries[0].population | number }}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Region:</span>
-              <span class="value">{{ countries[0].region }}</span>
-            </div>
-          </div>
+          <div class="info-row"><span class="label">Country</span><span>{{ countries[0].name.common }}</span></div>
+          <div class="info-row"><span class="label">Capital</span><span>{{ countries[0].capital[0] }}</span></div>
+          <div class="info-row"><span class="label">Population</span><span>{{ countries[0].population | number }}</span></div>
+          <div class="info-row"><span class="label">Region</span><span>{{ countries[0].region }}</span></div>
         </div>
       }
-    } @else if (countryError) {
-      <div class="error-state">
-        <p>⚠️ {{ countryError }}</p>
-      </div>
     } @else {
-      <div class="loading-state">
-        <div class="spinner"></div>
-        <span>Loading Philippines data...</span>
-      </div>
+      <div class="loading-state"><div class="spinner"></div><span>Loading...</span></div>
     }
-  </div>
+  </section>
 
-  <div class="sdg-targets">
-    <h2>SDG 11 Targets Addressed</h2>
+  <section class="sdg-targets">
+    <h2>SDG 11 Targets We Address</h2>
     <div class="target-grid">
-      <div class="target">
-        <h3>🏍️ 11.2 — Transport</h3>
-        <p>Safe, affordable, accessible transport systems for all residents</p>
-      </div>
-      <div class="target">
-        <h3>🛡️ 11.5 — Disaster Resilience</h3>
-        <p>Reduce deaths and losses from disasters</p>
-      </div>
-      <div class="target">
-        <h3>🌿 11.6 — Environmental Impact</h3>
-        <p>Reduce environmental impact and improve air quality</p>
-      </div>
+      <article class="target"><h3>11.2 — Accessible Transport</h3><p>Complete Baguio City jeepney route information</p></article>
+      <article class="target"><h3>11.5 — Disaster Resilience</h3><p>Emergency contacts for police, fire, hospital, CDRRMO</p></article>
+      <article class="target"><h3>11.7 — Inclusive Public Services</h3><p>Welfare, employment, health services visible and accessible</p></article>
     </div>
-  </div>
+  </section>
 
-  <div class="built-by">
-    <h2>Built by</h2>
-    <p>University of Baguio — School of Information Technology</p>
-    <p>APPDEV1 Group Project, S.Y. 2025–2026</p>
-  </div>
-</div>
+  <footer class="about-footer">
+    <p>Built by University of Baguio — School of Information Technology</p>
+    <p>APPDEV1 Group Project · S.Y. 2025–2026</p>
+  </footer>
+</main>

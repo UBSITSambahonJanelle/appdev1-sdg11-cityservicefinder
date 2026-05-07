@@ -1,33 +1,39 @@
-
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
-import { WeatherService } from '../../services/weather.service';
-import { Observable } from 'rxjs';
-import { WeatherResponse } from '../../models/weather';
+import { Component, Input, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { WeatherService, WeatherData } from '../../services/weather.service';
 
 @Component({
   selector: 'app-weather-widget',
   standalone: true,
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule],
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.css']
 })
 export class WeatherWidgetComponent implements OnInit {
-  private weatherService = inject(WeatherService);
-
+  @Input() variant: 'compact' | 'full' = 'compact';
   
-  weather$!: Observable<WeatherResponse>;
-
+  weatherData = signal<WeatherData | null>(null);
+  loading = signal(true);
+  currentHour = new Date().getHours();
   
-  loadError = '';
-
-  today = new Date();
-
-  ngOnInit(): void {
-    this.weather$ = this.weatherService.getWeatherByCoordinates();
-    
-    this.weather$.subscribe({
-      error: (err: Error) => { this.loadError = err.message; }
+  constructor(private weatherService: WeatherService) {}
+  
+  ngOnInit() {
+    this.weatherService.getWeatherData().subscribe(data => {
+      this.weatherData.set(data);
+      this.loading.set(false);
     });
+  }
+  
+  getWeatherIcon(condition: string): string {
+    const icons: Record<string, string> = {
+      'Light Fog': '🌫️',
+      'Fog': '🌫️',
+      'Clouds': '☁️',
+      'Sunny': '☀️',
+      'Rain': '🌧️',
+      'Clear': '✨'
+    };
+    return icons[condition] || '🌤️';
   }
 }
