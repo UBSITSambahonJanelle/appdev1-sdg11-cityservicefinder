@@ -20,11 +20,19 @@ export const routes: Routes = [
   { path: 'transport',     component: TransportComponent },
   { path: 'city-services', component: CityServicesComponent },
   { path: 'city-services/:id', component: ServiceDetailComponent },
+
+  // Protected routes — authGuard now returns UrlTree for clean redirect
   { path: 'dashboard',    component: DashboardComponent,    canActivate: [authGuard] },
   { path: 'saved',        component: SavedServicesComponent, canActivate: [authGuard] },
-  { path: 'report',       component: ReportIssueComponent,
-    canActivate: [authGuard], canDeactivate: [unsavedGuard] },
-  { path: 'about',        component: AboutComponent },
-  { path: 'login',        component: LoginComponent },
-  { path: '**',           component: NotFoundComponent },
+
+  {
+    path: 'report',
+    component: ReportIssueComponent,
+    canActivate:   [authGuard],
+    canDeactivate: [unsavedGuard]
+  },
+
+  { path: 'about', component: AboutComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '**',    component: NotFoundComponent },
 ];
