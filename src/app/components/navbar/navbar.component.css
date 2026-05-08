@@ -32,48 +32,129 @@
   display: block;
 }
 
+/* Enhanced Navigation Links - Pill Buttons */
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
+  color: #4A5568;
+  font-weight: 500;
   font-size: 0.9rem;
-  padding: 5px 0;
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-links a:hover {
+  background: #EEF5EF;
   color: #1B4332;
-  font-weight: bold;
-  border-bottom: 2px solid #1B4332;
+  transform: translateY(-2px);
+}
+
+.nav-links a.active {
+  background: #1B4332;
+  color: white;
+  box-shadow: 0 2px 8px rgba(27, 67, 50, 0.3);
+}
+
+.nav-links a.active:hover {
+  background: #2A5C44;
+  transform: translateY(-2px);
+}
+
+/* Subtle underline animation on hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #1B4332;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+  width: 30%;
+}
+
+.nav-links a.active::after {
+  display: none;
+}
+
+/* Enhanced Sign In Button */
+.sign-in {
+  background: transparent;
+  border: 2px solid #1B4332;
+  color: #1B4332;
+  padding: 0.45rem 1.2rem;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.sign-in:hover {
+  background: #1B4332;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(27, 67, 50, 0.2);
+}
+
+.sign-in:active {
+  transform: translateY(0);
+}
+
+/* Enhanced Report Issue Button */
+.report {
+  background: linear-gradient(135deg, #C0392B, #E74C3C);
+  border: none;
+  color: white;
+  padding: 0.45rem 1.2rem;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(192, 57, 43, 0.3);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.report:hover {
+  background: linear-gradient(135deg, #A93226, #C0392B);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.4);
+}
+
+.report:active {
+  transform: translateY(0);
+}
+
+.report::before {
+  content: "📝";
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+}
+
+.report:hover::before {
+  transform: rotate(-5deg);
 }
 
 .nav-actions {
   display: flex;
   gap: 10px;
-}
-
-.nav-actions button {
-  padding: 6px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-
-.sign-in {
-  background: transparent;
-  border: 1px solid #1B4332;
-  color: #1B4332;
-}
-
-.report {
-  background: #c0392b;
-  border: none;
-  color: white;
 }
 
 /* Responsive */

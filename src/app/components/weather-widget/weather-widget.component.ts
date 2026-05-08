@@ -1,14 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, catchError, of, startWith, map } from 'rxjs';
-import { WeatherService } from '../../services/weather.service';
-import { WeatherResponse } from '../../models/weather';
-
-interface WeatherState {
-  loading: boolean;
-  data: WeatherResponse | null;
-  error: string | null;
-}
+import { WeatherService, WeatherData } from '../../services/weather.service';
 
 @Component({
   selector: 'app-weather-widget',
@@ -17,13 +9,31 @@ interface WeatherState {
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.css']
 })
-export class WeatherWidgetComponent {
-  private weatherService = inject(WeatherService);
-
-  weatherState$: Observable<WeatherState> =
-    this.weatherService.getWeatherByCoordinates().pipe(
-      map(data => ({ loading: false, data, error: null })),
-      catchError(err => of({ loading: false, data: null, error: err.message as string })),
-      startWith({ loading: true, data: null, error: null })
-    );
+export class WeatherWidgetComponent implements OnInit {
+  @Input() variant: 'compact' | 'full' = 'compact';
+  
+  weatherData = signal<WeatherData | null>(null);
+  loading = signal(true);
+  currentHour = new Date().getHours();
+  
+  constructor(private weatherService: WeatherService) {}
+  
+  ngOnInit() {
+    this.weatherService.getWeatherData().subscribe(data => {
+      this.weatherData.set(data);
+      this.loading.set(false);
+    });
+  }
+  
+  getWeatherIcon(condition: string): string {
+    const icons: Record<string, string> = {
+      'Light Fog': '🌫️',
+      'Fog': '🌫️',
+      'Clouds': '☁️',
+      'Sunny': '☀️',
+      'Rain': '🌧️',
+      'Clear': '✨'
+    };
+    return icons[condition] || '🌤️';
+  }
 }
