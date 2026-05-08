@@ -1,103 +1,33 @@
-@if (loading()) {
-  <div class="weather-skeleton">
-    <div class="skeleton-header"></div>
-    <div class="skeleton-temp"></div>
-    <div class="skeleton-details"></div>
+<div class="weather-card">
+  <div class="weather-header">
+    <span class="weather-loc">📍 BAGUIO CITY</span>
   </div>
-} @else {
-  @if (variant === 'compact') {
-    <!-- Compact Version - For Home Page -->
-    <div class="weather-premium compact">
-      <div class="weather-bg-pattern"></div>
-      <div class="weather-content">
-        <div class="weather-location">
-          <span class="location-dot"></span>
-          {{ weatherData()?.location }}
-        </div>
-        <div class="weather-main">
-          <div class="weather-temp-section">
-            <div class="weather-temp">{{ weatherData()?.temp }}°</div>
-            <div class="weather-condition">
-              {{ getWeatherIcon(weatherData()?.condition || '') }}
-              {{ weatherData()?.condition }}
-            </div>
-          </div>
-          <div class="weather-stats">
-            <div class="stat">
-              <span class="stat-icon">💧</span>
-              <span>{{ weatherData()?.humidity }}%</span>
-            </div>
-            <div class="stat">
-              <span class="stat-icon">🌬️</span>
-              <span>{{ weatherData()?.windSpeed }} m/s</span>
-            </div>
-          </div>
-        </div>
-        <div class="weather-footer">
-          <span>Feels like {{ weatherData()?.feelsLike }}°</span>
-          <span class="divider">•</span>
-          <span>UV {{ weatherData()?.uvIndex }}</span>
-        </div>
-      </div>
+
+  <ng-container *ngIf="weatherState$ | async as state">
+
+    <div class="weather-loading" *ngIf="state.loading">
+      <div class="spinner"></div>
+      <span>Fetching conditions…</span>
     </div>
-  } @else {
-    <!-- Full Version - For Dashboard -->
-    <div class="weather-premium full">
-      <div class="weather-bg-pattern"></div>
-      <div class="weather-header">
+
+    <div class="weather-error" *ngIf="state.error && !state.loading">
+      <p>⚠️ Weather unavailable</p>
+      <p>{{ state.error }}</p>
+    </div>
+
+    <div *ngIf="state.data as w">
+      <div class="weather-main">
+        <div class="weather-temp">{{ w.main.temp | number:'1.0-0' }}°C</div>
         <div>
-          <h3>{{ weatherData()?.location }}</h3>
-          <p class="weather-date">{{ currentHour >= 6 && currentHour < 18 ? 'Daytime' : 'Nighttime' }}</p>
-        </div>
-        <div class="weather-sun-times">
-          <span>🌅 {{ weatherData()?.sunrise }}</span>
-          <span>🌇 {{ weatherData()?.sunset }}</span>
+          <div class="weather-cond">{{ w.weather[0].description | titlecase }}</div>
+          <div class="weather-feels">Feels like {{ w.main.feels_like | number:'1.0-0' }}°C</div>
         </div>
       </div>
-      
-      <div class="weather-temp-large">
-        <div class="temp-value">{{ weatherData()?.temp }}°</div>
-        <div class="temp-details">
-          <div class="condition">{{ weatherData()?.condition }}</div>
-          <div class="feels-like">Feels like {{ weatherData()?.feelsLike }}°</div>
-        </div>
-      </div>
-      
-      <div class="weather-grid">
-        <div class="grid-item">
-          <span class="item-label">Humidity</span>
-          <span class="item-value">{{ weatherData()?.humidity }}%</span>
-        </div>
-        <div class="grid-item">
-          <span class="item-label">Wind</span>
-          <span class="item-value">{{ weatherData()?.windSpeed }} m/s</span>
-        </div>
-        <div class="grid-item">
-          <span class="item-label">Visibility</span>
-          <span class="item-value">{{ weatherData()?.visibility }} km</span>
-        </div>
-        <div class="grid-item">
-          <span class="item-label">Pressure</span>
-          <span class="item-value">{{ weatherData()?.pressure }} hPa</span>
-        </div>
-        <div class="grid-item">
-          <span class="item-label">UV Index</span>
-          <span class="item-value">{{ weatherData()?.uvIndex }}</span>
-        </div>
-      </div>
-      
-      <div class="hourly-forecast">
-        <div class="hourly-title">Hourly Forecast</div>
-        <div class="hourly-list">
-          @for (hour of weatherData()?.hourlyForecast; track hour.time) {
-            <div class="hourly-item">
-              <span class="hour-time">{{ hour.time }}</span>
-              <span class="hour-icon">{{ hour.icon }}</span>
-              <span class="hour-temp">{{ hour.temp }}°</span>
-            </div>
-          }
-        </div>
+      <div class="weather-details">
+        <div><span class="wd-label">Humidity</span><span class="wd-val">{{ w.main.humidity }}%</span></div>
+        <div><span class="wd-label">Wind</span><span class="wd-val">{{ w.wind.speed | number:'1.0-1' }} m/s</span></div>
       </div>
     </div>
-  }
-}
+
+  </ng-container>
+</div>

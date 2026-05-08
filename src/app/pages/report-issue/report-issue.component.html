@@ -1,23 +1,20 @@
 <div class="report-issue">
   <h1>📋 Report a Community Issue</h1>
-  <p class="sub">Help make Baguio City safer by reporting problems you see.</p>
+  <p class="sub">Help keep Baguio City safe by reporting hazards, damaged infrastructure, or public safety concerns.</p>
 
   @if (submitted) {
     <div class="success-card">
-      <div class="success-icon">✅</div>
-      <h2>Report Submitted!</h2>
+      <p class="success-icon">✅</p>
+      <h2>Report submitted</h2>
       <p>Thank you for helping improve Baguio City.</p>
-      <p class="response-time">The city services team will review your report within 2-3 business days.</p>
-      <div class="success-actions">
-        <button class="btn-new" (click)="reset()">Submit Another</button>
-        <a routerLink="/dashboard" class="btn-dashboard">Go to Dashboard</a>
-      </div>
+      <button class="btn-new" (click)="reset()">Submit Another Report</button>
     </div>
+
   } @else {
-    <form class="report-form">
+    <div class="report-form">
       <div class="form-group">
-        <label>Issue Category *</label>
-        <select [(ngModel)]="category" name="category">
+        <label for="cat">Issue Category</label>
+        <select id="cat" [value]="category" (change)="category = $any($event.target).value">
           <option value="">Select a category</option>
           @for (c of categories; track c) {
             <option [value]="c">{{ c }}</option>
@@ -26,21 +23,27 @@
       </div>
 
       <div class="form-group">
-        <label>Location *</label>
-        <input type="text" placeholder="e.g. Session Road, Baguio City" [(ngModel)]="location" name="location">
+        <label for="loc">Location</label>
+        <input id="loc" type="text"
+               placeholder="e.g. Session Road near Burnham Park"
+               [value]="location"
+               (input)="location = $any($event.target).value">
       </div>
 
       <div class="form-group">
-        <label>Description *</label>
-        <textarea rows="5" placeholder="Describe the issue in detail..." [(ngModel)]="description" name="description"></textarea>
+        <label for="desc">Description</label>
+        <textarea id="desc" rows="5"
+                  placeholder="Describe the issue — what you saw, when it happened, and why it matters."
+                  [value]="description"
+                  (input)="description = $any($event.target).value"></textarea>
         <span class="char-count">{{ description.length }} characters</span>
       </div>
 
       @if (errorMsg) {
-        <div class="error-message">{{ errorMsg }}</div>
+        <p class="form-error" role="alert">⚠️ {{ errorMsg }}</p>
       }
 
-      <button type="button" class="submit-btn" (click)="submit()">Submit Report</button>
-    </form>
+      <button class="btn-submit" (click)="submit()">Submit Report</button>
+    </div>
   }
 </div>

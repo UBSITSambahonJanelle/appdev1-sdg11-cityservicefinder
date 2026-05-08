@@ -1,53 +1,39 @@
+
+
 <div class="dashboard">
   <div class="dashboard-header">
     <div>
-      <h1>📊 Dashboard</h1>
+      <h1>Dashboard</h1>
+    
       <p class="dash-date">{{ today | date:'EEEE, MMMM d, y' }} — Baguio City</p>
     </div>
     <a routerLink="/report" class="btn-report">+ Report an Issue</a>
   </div>
 
-  <!-- Stats Cards -->
   <div class="stats-grid">
-    <div class="stat-card emergency">
-      <div class="stat-number">3</div>
-      <div class="stat-title">Emergency</div>
-      <span class="stat-icon">🚨</span>
-    </div>
-    <div class="stat-card health">
-      <div class="stat-number">1</div>
-      <div class="stat-title">Health</div>
-      <span class="stat-icon">🏥</span>
-    </div>
-    <div class="stat-card welfare">
-      <div class="stat-number">1</div>
-      <div class="stat-title">Welfare</div>
-      <span class="stat-icon">🤝</span>
-    </div>
-    <div class="stat-card employment">
-      <div class="stat-number">1</div>
-      <div class="stat-title">Employment</div>
-      <span class="stat-icon">💼</span>
-    </div>
+    @for (stat of stats; track stat.title) {
+      <div class="stat-card" [style.border-top-color]="stat.color">
+        <div class="stat-number">{{ stat.number }}</div>
+        <div class="stat-title">{{ stat.title }}</div>
+      </div>
+    }
   </div>
 
-  <!-- Dashboard Widgets Row - Full weather for dashboard -->
   <div class="dashboard-widgets">
-    <div class="weather-container">
-      <app-weather-widget [variant]="'full'"></app-weather-widget>
-    </div>
+    <app-weather-widget></app-weather-widget>
 
+   
     <div class="saved-section">
       <div class="saved-header">
         <h3>⭐ Saved Services</h3>
         <a routerLink="/saved" class="see-all">See all →</a>
       </div>
+
       @if (cityService.savedServices().length === 0) {
-        <div class="no-saved">
-          <div class="empty-icon">📌</div>
-          <p>No saved services yet.</p>
-          <a routerLink="/city-services" class="browse-link">Browse City Services →</a>
-        </div>
+        <p class="no-saved">
+          No saved services yet.
+          <a routerLink="/city-services">Browse City Services →</a>
+        </p>
       } @else {
         <div class="saved-list">
           @for (svc of cityService.savedServices(); track svc.id) {
