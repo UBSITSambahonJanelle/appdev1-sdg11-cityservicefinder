@@ -202,7 +202,8 @@
     grid-template-columns: 1fr;
   }
 
-  .card-wrapper {
+
+.card-wrapper {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -231,5 +232,3 @@
 }
 
 .see-all a:hover { text-decoration: underline; }
-
-}
