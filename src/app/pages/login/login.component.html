@@ -1,1 +1,40 @@
-<p>login works!</p>
+<main class="login-page" aria-label="Login page">
+  <div class="login-card">
+    <div class="login-logo" aria-hidden="true">🏔️</div>
+    <h1>City Service Finder</h1>
+    <p class="login-sub">
+      Sign in to access your dashboard, saved services, and submit community reports.
+    </p>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="yourname@email.com"
+        [value]="email"
+        (input)="email = $any($event.target).value"
+        autocomplete="email"
+        aria-required="true">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="••••••••"
+        [value]="password"
+        (input)="password = $any($event.target).value"
+        autocomplete="current-password"
+        aria-required="true">
+    </div>
+
+    @if (errorMsg) {
+      <p class="form-error" role="alert" aria-live="assertive">{{ errorMsg }}</p>
+    }
+
+    <button class="btn-login" type="button" (click)="login()">Sign In</button>
+    <p class="login-note">Demo: type any email and any password to sign in.</p>
+  </div>
+</main>

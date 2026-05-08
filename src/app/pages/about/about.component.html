@@ -1,40 +1,102 @@
-<div class="about">
-  <h1>Sustainable Cities and Communities</h1>
-  <p>SDG 11 — Make cities inclusive, safe, resilient and sustainable</p>
+<main class="about" aria-label="About SDG 11 and this application">
 
-  <div class="api-section">
-    <h2>🇵🇭 Philippines Data (Live REST Countries API)</h2>
+  <header class="about-hero">
+    <h1>Sustainable Cities and Communities</h1>
+    <p>SDG Goal 11 — Make cities inclusive, safe, resilient and sustainable.</p>
+  </header>
+
+  <!-- Live REST Countries API data -->
+  <section class="api-section" aria-label="Philippines country data from REST Countries API">
+    <h2>🇵🇭 Philippines at a Glance</h2>
+    <p class="api-note">Live data from the REST Countries API</p>
 
     <ng-container *ngIf="philippinesState$ | async as state">
-      <div class="loading" *ngIf="state.loading">
-        <div class="spinner"></div>
+
+      <div class="loading" *ngIf="state.loading" role="status" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
         <p>Loading Philippines data...</p>
       </div>
-      <div class="error" *ngIf="state.error && !state.loading">
-        <p> Unable to fetch live data. {{ state.error }}</p>
+
+      <div class="error" *ngIf="state.error && !state.loading" role="alert">
+        <p>⚠️ Unable to fetch live data. Check your internet connection.</p>
       </div>
+
       <div class="country-info" *ngIf="state.data as country">
-        <div class="info-row"><span class="label">Country</span><span class="value">{{ country.name.common }}</span></div>
-        <div class="info-row"><span class="label">Capital</span><span class="value">{{ country.capital[0] }}</span></div>
-        <div class="info-row"><span class="label">Population</span><span class="value">{{ country.population | number }}</span></div>
-        <div class="info-row"><span class="label">Region</span><span class="value">{{ country.region }}</span></div>
-        <div class="info-row"><span class="label">Area</span><span class="value">{{ country.area | number }} km²</span></div>
+        <div class="info-row">
+          <span class="label">Country</span>
+          <span class="value">{{ country.name.common }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Capital</span>
+          <span class="value">{{ country.capital[0] }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Population</span>
+          <span class="value">{{ country.population | number }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Region</span>
+          <span class="value">{{ country.region }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Land Area</span>
+          <span class="value">{{ country.area | number }} km²</span>
+        </div>
       </div>
+
     </ng-container>
-  </div>
+  </section>
 
-  <div class="sdg-targets">
-    <h2>SDG 11 Targets Addressed</h2>
+  <!-- SDG 11 Targets -->
+  <section class="sdg-targets" aria-label="SDG 11 targets addressed by this application">
+    <h2>SDG 11 Targets We Address</h2>
     <div class="target-grid">
-      <div class="target"><h3>11.2 — Transport</h3><p>Safe, affordable transport for all residents</p></div>
-      <div class="target"><h3>11.5 — Disaster Resilience</h3><p>Reduce deaths and losses from disasters</p></div>
-      <div class="target"><h3>11.6 — Environmental Impact</h3><p>Reduce environmental impact and improve air quality</p></div>
+      <article class="target">
+        <h3>11.2 — Accessible Transport</h3>
+        <p>Providing complete Baguio City jeepney route information to help residents navigate affordable public transport.</p>
+      </article>
+      <article class="target">
+        <h3>11.5 — Disaster Resilience</h3>
+        <p>Centralizing emergency contacts for police, fire, hospital, and CDRRMO so residents can respond quickly during crises.</p>
+      </article>
+      <article class="target">
+        <h3>11.7 — Inclusive Public Services</h3>
+        <p>Making welfare, employment, and health services visible and accessible to all Baguio City residents in one platform.</p>
+      </article>
     </div>
-  </div>
+  </section>
 
-  <div class="built-by">
-    <h2>Built by</h2>
-    <p>University of Baguio — School of Information Technology</p>
-    <p>APPDEV1 Group Project, S.Y. 2025–2026</p>
-  </div>
-</div>
+  <footer class="about-footer">
+    <p>Built by University of Baguio — School of Information Technology</p>
+    <p>APPDEV1 Group Project · S.Y. 2025–2026</p>
+  </footer>
+
+</main>
+```
+
+### saved-services.component.html — replace whole file
+
+```html
+<main class="saved-services" aria-label="Your saved city services">
+  <header>
+    <h1>⭐ Saved Services</h1>
+    <p>Services you have saved for quick access.</p>
+  </header>
+
+  @if (cityService.savedServices().length === 0) {
+    <section class="empty-state" aria-label="No saved services">
+      <p>You haven't saved any services yet.</p>
+      <p>Browse <a routerLink="/city-services">City Services</a> and tap ☆ Save to add them here.</p>
+    </section>
+  } @else {
+    <section class="saved-grid" aria-label="List of saved services">
+      @for (service of cityService.savedServices(); track service.id) {
+        <app-service-card
+          [service]="service"
+          [isSaved]="true"
+          (toggleSave)="onToggleSave($event)">
+        </app-service-card>
+      }
+    </section>
+  }
+</main>

@@ -67,7 +67,19 @@ h1 {
     padding: 0.4rem 1rem;
     font-size: 0.75rem;
   }
-  
+
+
+  .card-wrapper { display: flex; flex-direction: column; gap: 4px; }
+.view-detail {
+  font-size: 0.78rem;
+  color: #1B4332;
+  text-align: right;
+  text-decoration: none;
+  padding-right: 4px;
+}
+
+
+.view-detail:hover { text-decoration: underline; }
   .services-grid {
     grid-template-columns: 1fr;
   }

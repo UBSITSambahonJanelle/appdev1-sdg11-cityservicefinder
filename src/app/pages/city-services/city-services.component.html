@@ -1,28 +1,36 @@
+<main class="city-services" aria-label="Baguio City services directory">
 
+  <header class="page-header">
+    <h1>City Services</h1>
+    <p>Emergency contacts, health facilities, welfare offices, and employment support in Baguio City.</p>
+  </header>
 
-<div class="city-services">
-  <h1>City Services</h1>
-  <p>Emergency, health, welfare, and employment services in Baguio City.</p>
-
-  <div class="filter-buttons">
+  <nav class="filter-buttons" aria-label="Filter services by category">
     @for (filter of filters; track filter) {
       <button
-        (click)="selectedFilter = filter"
+        type="button"
+        class="filter-btn"
         [class.active]="selectedFilter === filter"
-        class="filter-btn">
+        [attr.aria-pressed]="selectedFilter === filter"
+        (click)="selectedFilter = filter">
         {{ filter }}
       </button>
     }
-  </div>
+  </nav>
 
-  <div class="services-grid">
-    
+  <section class="services-grid" aria-label="Services list">
     @for (service of filteredServices; track service.id) {
-      <app-service-card
-        [service]="service"
-        [isSaved]="isSaved(service.id)"
-        (toggleSave)="onToggleSave($event)">
-      </app-service-card>
+      <div class="card-wrapper">
+        <app-service-card
+          [service]="service"
+          [isSaved]="isSaved(service.id)"
+          (toggleSave)="onToggleSave($event)">
+        </app-service-card>
+        <a [routerLink]="['/city-services', service.id]" class="view-detail">
+          View full details →
+        </a>
+      </div>
     }
-  </div>
-</div>
+  </section>
+
+</main>
