@@ -1,81 +1,18 @@
-<!-- src/app/pages/about/about.component.html -->
 <div class="about">
   <h1>Sustainable Cities and Communities</h1>
   <p>SDG 11 — Make cities inclusive, safe, resilient and sustainable</p>
-<<<<<<< Updated upstream
-  
-  <!-- API Data Section -->
-  <div class="api-section">
-    <div class="api-tag">
-      <span class="live-dot"></span> Live data — REST Countries API
-    </div>
-    <h2>🇵🇭 Philippines Data</h2>
-
-    @if (philippines$ | async; as countries) {
-      @if (countries && countries[0]) {
-        <div class="country-info">
-          <div class="info-grid">
-            <div class="info-row">
-              <span class="label">Country:</span>
-              <span class="value">{{ countries[0].name.common }}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Capital:</span>
-              <span class="value">{{ countries[0].capital[0] }}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Population:</span>
-              <span class="value">{{ countries[0].population | number }}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Region:</span>
-              <span class="value">{{ countries[0].region }}</span>
-            </div>
-          </div>
-        </div>
-      }
-    } @else if (countryError) {
-      <div class="error-state">
-        <p>⚠️ {{ countryError }}</p>
-      </div>
-    } @else {
-      <div class="loading-state">
-        <div class="spinner"></div>
-        <span>Loading Philippines data...</span>
-      </div>
-      <div class="info-row">
-        <span class="label">Population:</span>
-        <span class="value">{{ countryData()?.population | number }}</span>
-      </div>
-      <div class="info-row">
-        <span class="label">Region:</span>
-        <span class="value">{{ countryData()?.region }}</span>
-      </div>
-      <div class="info-row">
-        <span class="label">Subregion:</span>
-        <span class="value">{{ countryData()?.subregion }}</span>
-      </div>
-      <div class="info-row">
-        <span class="label">Area:</span>
-        <span class="value">{{ countryData()?.area | number }} km²</span>
-      </div>
-    </div>
-=======
 
   <div class="api-section">
     <h2>🇵🇭 Philippines Data (Live REST Countries API)</h2>
 
     <ng-container *ngIf="philippinesState$ | async as state">
-
       <div class="loading" *ngIf="state.loading">
         <div class="spinner"></div>
         <p>Loading Philippines data...</p>
       </div>
-
       <div class="error" *ngIf="state.error && !state.loading">
-        <p>⚠️ Unable to fetch live data. {{ state.error }}</p>
+        <p> Unable to fetch live data. {{ state.error }}</p>
       </div>
-
       <div class="country-info" *ngIf="state.data as country">
         <div class="info-row"><span class="label">Country</span><span class="value">{{ country.name.common }}</span></div>
         <div class="info-row"><span class="label">Capital</span><span class="value">{{ country.capital[0] }}</span></div>
@@ -83,9 +20,7 @@
         <div class="info-row"><span class="label">Region</span><span class="value">{{ country.region }}</span></div>
         <div class="info-row"><span class="label">Area</span><span class="value">{{ country.area | number }} km²</span></div>
       </div>
-
     </ng-container>
->>>>>>> Stashed changes
   </div>
 
   <div class="sdg-targets">

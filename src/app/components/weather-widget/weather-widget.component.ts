@@ -1,46 +1,22 @@
-<<<<<<< Updated upstream
-import { Component, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-=======
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, catchError, of, startWith, map } from 'rxjs';
 import { WeatherService } from '../../services/weather.service';
+import { WeatherResponse } from '../../models/weather';
 
 interface WeatherState {
   loading: boolean;
-  data: any;
+  data: WeatherResponse | null;
   error: string | null;
 }
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-weather-widget',
   standalone: true,
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule],
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.css']
 })
-<<<<<<< Updated upstream
-export class WeatherWidgetComponent implements OnInit {
-  private weatherService = inject(WeatherService);
-
-  
-  weather$!: Observable<WeatherResponse>;
-
-  
-  loadError = '';
-
-  today = new Date();
-
-  ngOnInit(): void {
-    this.weather$ = this.weatherService.getWeatherByCoordinates();
-    
-    this.weather$.subscribe({
-      error: (err: Error) => { this.loadError = err.message; }
-    });
-  }
-=======
 export class WeatherWidgetComponent {
   private weatherService = inject(WeatherService);
 
@@ -50,5 +26,4 @@ export class WeatherWidgetComponent {
       catchError(err => of({ loading: false, data: null, error: err.message as string })),
       startWith({ loading: true, data: null, error: null })
     );
->>>>>>> Stashed changes
 }
