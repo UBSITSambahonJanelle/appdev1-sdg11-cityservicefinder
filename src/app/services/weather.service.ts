@@ -1,56 +1,35 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
+import { WeatherResponse, AirQualityResponse } from '../models/weather';
+import { environment } from '../environments/environment/environment';
 
-export interface WeatherData {
-  location: string;
-  temp: number;
-  feelsLike: number;
-  condition: string;
-  humidity: number;
-  windSpeed: number;
-  visibility: number;
-  pressure: number;
-  uvIndex: number;
-  sunrise: string;
-  sunset: string;
-  hourlyForecast: HourlyForecast[];
-}
-
-export interface HourlyForecast {
-  time: string;
-  temp: number;
-  icon: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class WeatherService {
-  // Premium mock data - loads instantly, no API key needed
-  getWeatherData(): Observable<WeatherData> {
-    return of({
-      location: 'Baguio City, Benguet',
-      temp: 18,
-      feelsLike: 16,
-      condition: 'Light Fog',
-      humidity: 83,
-      windSpeed: 1.2,
-      visibility: 8,
-      pressure: 1015,
-      uvIndex: 4,
-      sunrise: '6:15 AM',
-      sunset: '5:45 PM',
-      hourlyForecast: [
-        { time: 'Now', temp: 18, icon: '🌫️' },
-        { time: '1 AM', temp: 17, icon: '🌫️' },
-        { time: '2 AM', temp: 17, icon: '🌫️' },
-        { time: '3 AM', temp: 16, icon: '☁️' },
-        { time: '4 AM', temp: 16, icon: '☁️' },
-        { time: '5 AM', temp: 15, icon: '☀️' },
-        { time: '6 AM', temp: 16, icon: '☀️' },
-        { time: '7 AM', temp: 17, icon: '☀️' }
-      ]
-    }).pipe(delay(100)); // Minimal 100ms delay for smooth loading
+  private http    = inject(HttpClient);
+  private apiKey  = environment.openWeatherMapKey;
+  private baseUrl = environment.openWeatherMapBase;
+
+  // Baguio City coordinates — 16.4023°N, 120.5960°E
+  private readonly lat = 16.4023;
+  private readonly lon = 120.5960;
+
+  // Returns an Observable — components use async pipe, no .subscribe() needed
+  getWeatherByCoordinates(): Observable<WeatherResponse> {
+    const url = `${this.baseUrl}/weather?lat=${this.lat}&lon=${this.lon}&units=metric&appid=${this.apiKey}`;
+    return this.http.get<WeatherResponse>(url).pipe(
+      catchError(err =>
+        throwError(() => new Error('Could not load weather data. Check your API key in environment.ts.'))
+      )
+    );
+  }
+
+  getAirQuality(): Observable<AirQualityResponse> {
+    const url = `${this.baseUrl}/air_pollution?lat=${this.lat}&lon=${this.lon}&appid=${this.apiKey}`;
+    return this.http.get<AirQualityResponse>(url).pipe(
+      catchError(err =>
+        throwError(() => new Error('Could not load air quality data.'))
+      )
+    );
   }
 }

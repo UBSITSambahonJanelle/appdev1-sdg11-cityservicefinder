@@ -1,22 +1,18 @@
-<main class="home">
+<div class="home">
 
-  <!-- Hero Section -->
-  <header class="hero" role="banner">
+  <div class="hero">
     <div class="hero-content">
       <h1>Your City, Your Services</h1>
       <p>Find emergency contacts, health services, public transport and more — all in one place for Baguio City residents.</p>
       <div class="search-box">
-        <input
-          type="text"
-          placeholder="Search services, offices, hotlines..."
-          aria-label="Search city services">
-        <button type="button">Search</button>
+        <input type="text" placeholder="Search services, offices, hotlines...">
+        <button>Search</button>
       </div>
     </div>
-  </header>
+  </div>
 
-  <!-- Stats Strip -->
-  <section class="stats" aria-label="City service statistics">
+
+  <div class="stats">
     <div class="stat">
       <div class="stat-value">24/7</div>
       <div class="stat-label">Emergency hotlines</div>
@@ -26,37 +22,25 @@
       <div class="stat-label">Jeepney routes</div>
     </div>
     <div class="stat">
-      <div class="stat-value">6</div>
-      <div class="stat-label">City services listed</div>
+      <div class="stat-value">18°</div>
+      <div class="stat-label">Light Fog</div>
     </div>
-  </section>
+  </div>
 
-  <!-- Featured Services -->
-  <section class="services">
+
+  <div class="services">
     <h2>Available Services</h2>
     <div class="services-grid">
-      @for (service of featuredServices; track service.id) {
-        <div class="card-wrapper">
-          <app-service-card
-            [service]="service"
-            [isSaved]="isSaved(service.id)"
-            (toggleSave)="onToggleSave($event)">
-          </app-service-card>
-          <a [routerLink]="['/city-services', service.id]" class="view-detail-link">
-            View details →
-          </a>
-        </div>
-      }
+      <app-service-card *ngFor="let service of services" 
+                        [service]="service"
+                        (toggleSave)="onToggleSave($event)">
+      </app-service-card>
     </div>
-    <div class="see-all">
-      <a routerLink="/city-services">See all city services →</a>
-    </div>
-  </section>
+  </div>
 
-  <!-- Widgets - Compact weather for home page -->
-  <section class="widgets" aria-label="Weather and quick actions">
-    <app-weather-widget [variant]="'compact'"></app-weather-widget>
+
+  <div class="widgets">
+    <app-weather-widget></app-weather-widget>
     <app-quick-actions></app-quick-actions>
-  </section>
-
-</main>
+  </div>
+</div>
