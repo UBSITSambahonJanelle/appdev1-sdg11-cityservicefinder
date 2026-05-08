@@ -1,18 +1,32 @@
-<div class="emergency">
-  <div class="emergency-header">
-    <h1>Emergency Contacts</h1>
-    <p>Baguio City hotlines and emergency services. In a life-threatening emergency, always call <strong>911</strong> first.</p>
-  </div>
-  
-  <div class="contacts">
-    <div class="contact-card" *ngFor="let contact of emergencyContacts">
-      <div class="contact-icon">{{ contact.icon }}</div>
-      <div class="contact-info">
-        <div class="contact-type">{{ contact.name }}</div>
-        <h3>{{ contact.organization }}</h3>
-        <p>{{ contact.description }}</p>
-        <a [href]="'tel:' + contact.phone" class="contact-phone">📞 {{ contact.phone }}</a>
-      </div>
+<main class="emergency" aria-label="Emergency contacts for Baguio City">
+
+  <header class="emergency-hero" role="banner">
+    <div class="hero-content">
+      <h1>Emergency Contacts</h1>
+      <p>
+        Baguio City hotlines and emergency services.
+        In any life-threatening emergency, always call <strong>911</strong> first.
+      </p>
     </div>
-  </div>
-</div>
+  </header>
+
+  <section class="contacts" aria-label="List of emergency contacts">
+    @for (contact of emergencyContacts; track contact.phone) {
+      <article class="contact-card">
+        <div class="contact-icon" aria-hidden="true">{{ contact.icon }}</div>
+        <div class="contact-info">
+          <div class="contact-type">{{ contact.name }}</div>
+          <h2>{{ contact.organization }}</h2>
+          <p>{{ contact.description }}</p>
+          <a
+            [href]="'tel:' + contact.phone"
+            class="contact-phone"
+            [attr.aria-label]="'Call ' + contact.organization + ' at ' + contact.phone">
+            📞 {{ contact.phone }}
+          </a>
+        </div>
+      </article>
+    }
+  </section>
+
+</main>

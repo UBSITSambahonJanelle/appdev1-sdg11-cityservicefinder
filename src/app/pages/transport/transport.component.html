@@ -1,34 +1,41 @@
-<div class="transport-page">
-  <h1>Public Transport</h1>
-  <p>Jeepney routes, fares, and schedules for getting around Baguio City.</p>
-  
-  <!-- Filter Buttons with Pill Design -->
-  <div class="filter-buttons">
-    <button 
-      *ngFor="let filter of filters" 
-      (click)="selectedFilter = filter"
-      [class.active]="selectedFilter === filter"
-      class="filter-btn">
-      {{ filter }}
-    </button>
-  </div>
-  
-  <!-- Routes List -->
-  <div class="routes-list">
-    <div class="route-card" *ngFor="let route of filteredRoutes">
-      <div class="route-header">
-        <span class="route-code">{{ route.code }}</span>
-        <span class="route-badge">{{ route.type | uppercase }}</span>
-      </div>
-      <h3>{{ route.name }}</h3>
-      <p>{{ route.from }} → {{ route.to }}</p>
-      <div class="route-details">
-        <span>💰 {{ route.fare | currency:'PHP':'symbol-narrow' }}</span>
-        <span>🕐 {{ route.schedule }}</span>
-      </div>
-      <div class="route-stops">
-        📍 {{ route.stops }}
-      </div>
-    </div>
-  </div>
-</div>
+<main class="transport-page" aria-label="Public transport routes in Baguio City">
+
+  <header>
+    <h1>Public Transport</h1>
+    <p>Jeepney routes, taxis, and bus services for getting around Baguio City.</p>
+  </header>
+
+  <nav class="filter-buttons" aria-label="Filter by transport type">
+    @for (filter of filters; track filter) {
+      <button
+        type="button"
+        class="filter-btn"
+        [class.active]="selectedFilter === filter"
+        [attr.aria-pressed]="selectedFilter === filter"
+        (click)="selectedFilter = filter">
+        {{ filter }}
+      </button>
+    }
+  </nav>
+
+  <section class="routes-list" aria-label="Transport routes">
+    @for (route of filteredRoutes; track route.code) {
+      <article class="route-card">
+        <div class="route-header">
+          <span class="route-code">{{ route.code }}</span>
+          <span class="route-badge">{{ route.type | uppercase }}</span>
+        </div>
+        <h2>{{ route.name }}</h2>
+        <p class="route-direction">{{ route.from }} → {{ route.to }}</p>
+        <div class="route-details">
+          <span>💰 {{ route.fare | currency:'PHP':'symbol-narrow':'1.0-0' }}</span>
+          <span>🕐 {{ route.schedule }}</span>
+        </div>
+        <div class="route-stops">
+          📍 {{ route.stops }}
+        </div>
+      </article>
+    }
+  </section>
+
+</main>
