@@ -8,6 +8,8 @@ import { AboutComponent } from './pages/about/about.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { authGuard } from './guards/auth.guard';
 
+import { SupportComponent } from './pages/support/support.component';
+
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -17,5 +19,10 @@ export const routes: Routes = [
   { path: 'city-services/:id', component: CityServicesComponent },  // URL parameter
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },  // Protected route
   { path: 'about', component: AboutComponent },
+
+
+{ path: 'support', component: SupportComponent },
+
+
   { path: '**', component: NotFoundComponent }  // Wildcard route
 ];
