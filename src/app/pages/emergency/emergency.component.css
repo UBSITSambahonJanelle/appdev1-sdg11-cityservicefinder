@@ -1,35 +1,79 @@
-.emergency {
-  width: 100%;
-  min-height: calc(100vh - 200px);
-}
+.emergency { width: 100%; min-height: calc(100vh - 200px); }
 
-.emergency-header {
+.emergency-hero {
   background: linear-gradient(135deg, #c0392b, #e74c3c);
   color: white;
   text-align: center;
-  padding: 50px 20px;
-  width: 100%;
+  padding: 60px 20px;
 }
+
+.hero-content { max-width: 800px; margin: 0 auto; }
+.hero-content h1 { font-size: 2rem; margin-bottom: 12px; }
+.hero-content p  { font-size: 1rem; line-height: 1.6; }
+.hero-content strong { color: #ffcc00; }
 
 .contacts {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 20px;
-  padding: 30px;
-  width: 100%;
+  padding: 40px 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
+.contact-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  gap: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.contact-icon { font-size: 2rem; flex-shrink: 0; }
+
+.contact-type {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #c0392b;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.contact-info h2 {
+  font-size: 1rem;
+  color: #1B4332;
+  margin-bottom: 8px;
+}
+
+.contact-info p {
+  font-size: 0.82rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.contact-phone {
+  display: inline-block;
+  background: #e8f5e9;
+  color: #1B4332;
+  padding: 5px 14px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.contact-phone:hover { background: #1B4332; color: white; }
+
 @media (max-width: 768px) {
-  .contacts {
-    padding: 15px;
-    grid-template-columns: 1fr;
-  }
-  .emergency-header {
-    padding: 30px 15px;
-  }
-  .emergency-header h1 {
-    font-size: 1.5rem;
-  }
+  .emergency-hero { padding: 40px 15px; }
+  .emergency-hero h1 { font-size: 1.5rem; }
+  .contacts { padding: 20px 15px; grid-template-columns: 1fr; }
 }

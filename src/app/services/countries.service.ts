@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, throwError, map } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 export interface Country {
   name: { common: string; official: string };
@@ -16,34 +16,23 @@ export interface Country {
 
 @Injectable({ providedIn: 'root' })
 export class CountriesService {
-  private http = inject(HttpClient);
+  private http   = inject(HttpClient);
   private apiUrl = 'https://restcountries.com/v3.1';
 
-  // Get Philippines data
+  // Fetch Philippines data using ISO alpha code — more reliable than name search
   getPhilippinesData(): Observable<Country[]> {
     return this.http.get<Country[]>(`${this.apiUrl}/alpha/PHL`).pipe(
-      catchError(err => {
-        console.error('CountriesService error:', err);
-        return throwError(() => new Error('Could not load country data.'));
-      })
+      catchError(err =>
+        throwError(() => new Error('Could not load country data. Check your internet connection.'))
+      )
     );
   }
 
-  // Get country by code (e.g., 'PHL', 'JPN', 'USA')
   getCountryByCode(code: string): Observable<Country[]> {
     return this.http.get<Country[]>(`${this.apiUrl}/alpha/${code}`).pipe(
-      catchError(err => throwError(() => new Error('Could not load country data.')))
-    );
-  }
-
-  // Get Southeast Asia countries (for the SE Asia section)
-  getSEAsiaCountries(): Observable<Country[]> {
-    return this.http.get<Country[]>(`${this.apiUrl}/subregion/South-Eastern%20Asia?fields=name,population,capital,flags`).pipe(
-      map((list: Country[]) => list.sort((a: Country, b: Country) => b.population - a.population).slice(0, 6)),
-      catchError(err => {
-        console.error('SE Asia API error:', err);
-        return throwError(() => new Error('Could not load regional data.'));
-      })
+      catchError(err =>
+        throwError(() => new Error(`Could not load data for country code: ${code}.`))
+      )
     );
   }
 }

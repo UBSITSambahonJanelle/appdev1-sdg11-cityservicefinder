@@ -8,7 +8,7 @@ import { CityService } from '../../services/city.service';
   selector: 'app-saved-services',
   standalone: true,
   imports: [CommonModule, RouterLink, ServiceCardComponent],
-  templateUrl: './saved-services.component.html',  // ← FIXED: was './service-detail.component.html'
+  templateUrl: './saved-services.component.html',
   styleUrls: ['./saved-services.component.css']
 })
 export class SavedServicesComponent {

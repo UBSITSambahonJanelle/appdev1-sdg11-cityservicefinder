@@ -1,0 +1,151 @@
+.service-detail {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: #1B4332;
+  text-decoration: none;
+  font-size: 0.87rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+.back-link:hover { text-decoration: underline; }
+
+.detail-card {
+  background: #fff;
+  border: 1px solid #E4E8EC;
+  border-radius: 14px;
+  padding: 2rem;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cat-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #1B4332;
+  background: #D1FAE5;
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  margin-bottom: 0.4rem;
+}
+
+h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1B2E22;
+  margin: 0;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  background: #FEE2E2;
+  color: #B91C1C;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.status-badge.open {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.detail-desc {
+  color: #4A5568;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+}
+
+.detail-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.6rem;
+}
+
+.d-field {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: #374151;
+}
+
+.d-label {
+  font-weight: 700;
+  min-width: 110px;
+  color: #1B4332;
+}
+
+.phone-link {
+  color: #1B4332;
+  text-decoration: none;
+  font-weight: 600;
+}
+.phone-link:hover { text-decoration: underline; }
+
+.detail-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-call {
+  display: inline-block;
+  background: #1B4332;
+  color: #fff;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.87rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.btn-call:hover { background: #145c3a; }
+
+.btn-save {
+  background: transparent;
+  border: 1.5px solid #1B4332;
+  color: #1B4332;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.87rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-save.saved {
+  background: #1B4332;
+  color: #fff;
+}
+
+.not-found {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6B7280;
+}
+.not-found h2 { color: #374151; margin-bottom: 0.5rem; }
+
+.btn-back {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #1B4332;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
