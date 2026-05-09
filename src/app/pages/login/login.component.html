@@ -1,40 +1,36 @@
-<main class="login-page" aria-label="Login page">
+<div class="login-page">
   <div class="login-card">
-    <div class="login-logo" aria-hidden="true">🏔️</div>
+    <div class="login-logo">🏔️</div>
     <h1>City Service Finder</h1>
-    <p class="login-sub">
-      Sign in to access your dashboard, saved services, and submit community reports.
-    </p>
+    <p class="login-sub">Sign in to access your dashboard and report issues</p>
 
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input
-        id="email"
-        type="email"
-        placeholder="yourname@email.com"
-        [value]="email"
-        (input)="email = $any($event.target).value"
-        autocomplete="email"
-        aria-required="true">
-    </div>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="yourname@email.com" [(ngModel)]="email" name="email" required>
+      </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        placeholder="••••••••"
-        [value]="password"
-        (input)="password = $any($event.target).value"
-        autocomplete="current-password"
-        aria-required="true">
-    </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="password-wrapper">
+          <input [type]="showPassword ? 'text' : 'password'" placeholder="Enter your password" [(ngModel)]="password" name="password" required>
+          <button type="button" class="toggle-pwd" (click)="togglePasswordVisibility()">{{ showPassword ? '🙈' : '👁️' }}</button>
+        </div>
+      </div>
 
-    @if (errorMsg) {
-      <p class="form-error" role="alert" aria-live="assertive">{{ errorMsg }}</p>
-    }
+      @if (errorMsg) {
+        <div class="error-message">{{ errorMsg }}</div>
+      }
 
-    <button class="btn-login" type="button" (click)="login()">Sign In</button>
-    <p class="login-note">Demo: type any email and any password to sign in.</p>
+      @if (successMsg) {
+        <div class="success-message">{{ successMsg }}</div>
+      }
+
+      <button type="submit" class="login-btn" [disabled]="isLoading">
+        {{ isLoading ? 'Signing in...' : 'Sign In' }}
+      </button>
+    </form>
+
+    <p class="signup-prompt">Don't have an account? <a routerLink="/signup">Create one here</a></p>
   </div>
-</main>
+</div>

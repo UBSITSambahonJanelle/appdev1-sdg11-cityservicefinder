@@ -1,38 +1,18 @@
-<nav class="navbar" role="navigation" aria-label="Main navigation">
+<nav class="navbar">
   <div class="nav-container">
-
     <div class="nav-brand">
-      <a routerLink="/home" aria-label="City Service Finder home">
-        🏔️ City Service Finder
-      </a>
+      <a routerLink="/home">🏔️ City Service Finder</a>
       <small>BAGUIO CITY SERVICES</small>
     </div>
-
     <div class="nav-links">
-      <a routerLink="/home"          routerLinkActive="active" aria-label="Home">Home</a>
-      <a routerLink="/emergency"     routerLinkActive="active" aria-label="Emergency contacts">Emergency</a>
-      <a routerLink="/transport"     routerLinkActive="active" aria-label="Transport routes">Transport</a>
-      <a routerLink="/city-services" routerLinkActive="active" aria-label="City services list">City Services</a>
-      <a routerLink="/dashboard"     routerLinkActive="active" aria-label="Dashboard">Dashboard</a>
-      <a routerLink="/about"         routerLinkActive="active" aria-label="About SDG 11">About SDG 11</a>
-      <a routerLink="/login"         routerLinkActive="active" aria-label="Login">Login</a>
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a routerLink="/emergency" routerLinkActive="active">Emergency</a>
+      <a routerLink="/transport" routerLinkActive="active">Transport</a>
+      <a routerLink="/city-services" routerLinkActive="active">City Services</a>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/about" routerLinkActive="active">About SDG 11</a>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
     </div>
-
-    <div class="nav-actions">
-      <!-- Sign In links to /login, logout links back to /home -->
-      @if (authService.isLoggedIn()) {
-        <button class="sign-in" (click)="authService.logout()" aria-label="Sign out">
-          Sign Out
-        </button>
-      } @else {
-        <a routerLink="/login" class="sign-in" aria-label="Sign in to your account">
-          Sign In
-        </a>
-      }
-      <a routerLink="/report" class="report" aria-label="Report a community issue">
-        Report Issue
-      </a>
-    </div>
-
+    <a routerLink="/report" class="report">Report Issue</a>
   </div>
 </nav>

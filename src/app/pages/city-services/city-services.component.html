@@ -20,16 +20,11 @@
 
   <section class="services-grid" aria-label="Services list">
     @for (service of filteredServices; track service.id) {
-      <div class="card-wrapper">
-        <app-service-card
-          [service]="service"
-          [isSaved]="isSaved(service.id)"
-          (toggleSave)="onToggleSave($event)">
-        </app-service-card>
-        <a [routerLink]="['/city-services', service.id]" class="view-detail">
-          View full details →
-        </a>
-      </div>
+      <app-service-card
+        [service]="service"
+        [isSaved]="isSaved(service.id)"
+        (toggleSave)="onToggleSave($event)">
+      </app-service-card>
     }
   </section>
 

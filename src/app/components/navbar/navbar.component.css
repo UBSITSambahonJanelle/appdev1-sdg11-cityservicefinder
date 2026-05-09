@@ -1,17 +1,16 @@
 .navbar {
   background: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  width: 100%;
   position: sticky;
   top: 0;
   z-index: 1000;
+  padding: 10px 0;
 }
 
 .nav-container {
-  width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,36 +51,17 @@
   border-bottom: 2px solid #1B4332;
 }
 
-.nav-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.nav-actions button {
+.report {
+  background: #c0392b;
+  color: white;
   padding: 6px 15px;
   border-radius: 5px;
-  cursor: pointer;
+  text-decoration: none;
   font-size: 0.85rem;
 }
 
-.sign-in {
-  background: transparent;
-  border: 1px solid #1B4332;
-  color: #1B4332;
-}
-
-.report {
-  background: #c0392b;
-  border: none;
-  color: white;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .nav-container {
-    max-width: 100%;
-    padding: 12px 15px;
-  }
+.report:hover {
+  background: #A93226;
 }
 
 @media (max-width: 768px) {

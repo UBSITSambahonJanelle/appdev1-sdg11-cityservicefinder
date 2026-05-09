@@ -1,0 +1,5 @@
+<div class="card-footer">
+  <a [href]="'tel:' + service.phone" class="phone">📞 {{ service.phone }}</a>
+  <a [routerLink]="['/city-services', service.id]" class="view-detail">View details →</a>
+  <button class="save-btn" (click)="onToggleSave()">{{ isSaved ? '★ Saved' : '☆ Save' }}</button>
+</div>

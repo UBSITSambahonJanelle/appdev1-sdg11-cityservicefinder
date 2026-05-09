@@ -14,7 +14,11 @@ import { CityService } from '../../services/city.service';
 export class SavedServicesComponent {
   cityService = inject(CityService);
 
-  onToggleSave(id: number): void {
-    this.cityService.toggleSave(id);
+  get savedServices() {
+    return this.cityService.savedServices();
+  }
+
+  onToggleSave(serviceId: number): void {
+    this.cityService.toggleSave(serviceId);
   }
 }

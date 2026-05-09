@@ -14,17 +14,16 @@ import { authGuard } from './guards/auth.guard';
 import { unsavedGuard } from './guards/unsaved.guard';
 
 export const routes: Routes = [
-  { path: '',              redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home',          component: HomeComponent },
-  { path: 'emergency',     component: EmergencyComponent },
-  { path: 'transport',     component: TransportComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'emergency', component: EmergencyComponent },
+  { path: 'transport', component: TransportComponent },
   { path: 'city-services', component: CityServicesComponent },
   { path: 'city-services/:id', component: ServiceDetailComponent },
-  { path: 'dashboard',    component: DashboardComponent,    canActivate: [authGuard] },
-  { path: 'saved',        component: SavedServicesComponent, canActivate: [authGuard] },
-  { path: 'report',       component: ReportIssueComponent,
-    canActivate: [authGuard], canDeactivate: [unsavedGuard] },
-  { path: 'about',        component: AboutComponent },
-  { path: 'login',        component: LoginComponent },
-  { path: '**',           component: NotFoundComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
+  { path: 'saved', component: SavedServicesComponent, canActivate: [authGuard] },
+  { path: 'report', component: ReportIssueComponent, canActivate: [authGuard], canDeactivate: [unsavedGuard] },
+  { path: 'about', component: AboutComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '**', component: NotFoundComponent },
 ];

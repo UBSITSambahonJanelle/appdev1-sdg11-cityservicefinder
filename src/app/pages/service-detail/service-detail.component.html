@@ -1,42 +1,107 @@
-<div class="service-detail">
+<div class="service-detail-container">
   <a routerLink="/city-services" class="back-link">← Back to City Services</a>
 
-  @if (service()) {
-    <div class="detail-card">
+  @if (service) {
+    <div class="service-detail-card">
+      <!-- Header Section -->
       <div class="detail-header">
         <div>
-          <span class="cat-tag">{{ service()!.category | uppercase }}</span>
-          <h1>{{ service()!.name }}</h1>
+          <span class="category-badge">{{ service.category | uppercase }}</span>
+          <h1>{{ service.name }}</h1>
         </div>
-        <span class="status-badge" [class.open]="service()!.isOpen">
-          {{ service()!.isOpen ? 'Open Now' : 'Closed' }}
-        </span>
-      </div>
-
-      <p class="detail-desc">{{ service()!.description }}</p>
-
-      <div class="detail-fields">
-        <div class="d-field"><span class="d-label">📍 Address</span><span>{{ service()!.address }}</span></div>
-        <div class="d-field"><span class="d-label">🕐 Hours</span><span>{{ service()!.hours }}</span></div>
-        <div class="d-field">
-          <span class="d-label">📞 Phone</span>
-          <a [href]="'tel:' + service()!.phone" class="phone-link">{{ service()!.phone }}</a>
+        <div class="status-badge" [class.open]="service.isOpen">
+          {{ service.isOpen ? '● Open Now' : '○ Closed' }}
         </div>
       </div>
 
+      <!-- Description Section -->
+      <div class="detail-section">
+        <h3>📋 About</h3>
+        <p class="detail-description">{{ service.description }}</p>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="detail-section">
+        <h3>📞 Contact Information</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <div>
+              <div class="info-label">Address</div>
+              <div class="info-value">{{ service.address }}</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📞</span>
+            <div>
+              <div class="info-label">Phone Number</div>
+              <div class="info-value">
+                <a [href]="'tel:' + service.phone" class="phone-link">{{ service.phone }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🕐</span>
+            <div>
+              <div class="info-label">Operating Hours</div>
+              <div class="info-value">{{ service.hours }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency Numbers Section (for police stations) -->
+      @if (service.category === 'emergency') {
+        <div class="detail-section emergency-numbers">
+          <h3>🚨 Emergency Hotlines</h3>
+          <div class="emergency-grid">
+            <div class="emergency-card">
+              <span class="emergency-icon">📞</span>
+              <div>
+                <div class="emergency-label">Main Hotline</div>
+                <div class="emergency-number">{{ service.phone }}</div>
+              </div>
+            </div>
+            @if (service.alternativePhone) {
+              <div class="emergency-card">
+                <span class="emergency-icon">📱</span>
+                <div>
+                  <div class="emergency-label">Alternative</div>
+                  <div class="emergency-number">{{ service.alternativePhone }}</div>
+                </div>
+              </div>
+            }
+            <div class="emergency-card">
+              <span class="emergency-icon">🚨</span>
+              <div>
+                <div class="emergency-label">Emergency</div>
+                <div class="emergency-number">911</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Action Buttons -->
       <div class="detail-actions">
-        <a [href]="'tel:' + service()!.phone" class="btn-call">📞 Call Now</a>
-        <button class="btn-save" [class.saved]="isSaved()" (click)="toggleSave()">
-          {{ isSaved() ? '★ Saved' : '☆ Save Service' }}
+        <a [href]="'tel:' + service.phone" class="call-btn">
+          📞 Call {{ service.name }}
+        </a>
+        <button class="save-btn" [class.saved]="isSaved" (click)="toggleSave()">
+          {{ isSaved ? '★ Saved' : '☆ Save this Service' }}
         </button>
       </div>
-    </div>
 
+      <!-- Additional Info -->
+      <div class="detail-footer">
+        <p>💡 Tip: Save this service for quick access from your dashboard.</p>
+      </div>
+    </div>
   } @else {
     <div class="not-found">
-      <h2>Service not found</h2>
-      <p>No service exists with ID {{ id }}.</p>
-      <a routerLink="/city-services" class="btn-back">Browse All Services</a>
+      <h2>Service Not Found</h2>
+      <p>The service you're looking for doesn't exist.</p>
+      <a routerLink="/city-services" class="back-home">Browse All Services</a>
     </div>
   }
 </div>

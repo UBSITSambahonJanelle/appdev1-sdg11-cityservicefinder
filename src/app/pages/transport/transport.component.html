@@ -2,7 +2,7 @@
 
   <header>
     <h1>Public Transport</h1>
-    <p>Jeepney routes, taxis, and bus services for getting around Baguio City.</p>
+    <p>Jeepney routes and taxi services for getting around Baguio City.</p>
   </header>
 
   <nav class="filter-buttons" aria-label="Filter by transport type">
@@ -11,7 +11,6 @@
         type="button"
         class="filter-btn"
         [class.active]="selectedFilter === filter"
-        [attr.aria-pressed]="selectedFilter === filter"
         (click)="selectedFilter = filter">
         {{ filter }}
       </button>
@@ -25,17 +24,68 @@
           <span class="route-code">{{ route.code }}</span>
           <span class="route-badge">{{ route.type | uppercase }}</span>
         </div>
-        <h2>{{ route.name }}</h2>
+        <h3>{{ route.name }}</h3>
         <p class="route-direction">{{ route.from }} → {{ route.to }}</p>
-        <div class="route-details">
-          <span>💰 {{ route.fare | currency:'PHP':'symbol-narrow':'1.0-0' }}</span>
-          <span>🕐 {{ route.schedule }}</span>
+        
+        <div class="route-details-section">
+          <div class="route-detail-item">
+            <span class="detail-icon">📍</span>
+            <span class="detail-label">Full Route:</span>
+            <span class="detail-value">{{ route.fullRoute }}</span>
+          </div>
+          <div class="route-detail-item">
+            <span class="detail-icon">🚏</span>
+            <span class="detail-label">Major Stops:</span>
+            <span class="detail-value">{{ route.stops }}</span>
+          </div>
+          <div class="route-detail-item">
+            <span class="detail-icon">🏛️</span>
+            <span class="detail-label">Landmarks:</span>
+            <span class="detail-value">{{ route.landmarks.join(' → ') }}</span>
+          </div>
         </div>
-        <div class="route-stops">
-          📍 {{ route.stops }}
+
+        <div class="route-info">
+          <div class="info-badge">
+            <span class="info-icon">💰</span>
+            <span class="info-text">Fare: ₱{{ route.fare }}</span>
+          </div>
+          <div class="info-badge">
+            <span class="info-icon">🕐</span>
+            <span class="info-text">Schedule: {{ route.schedule }}</span>
+          </div>
         </div>
+
+        @if (route.hasMap) {
+          <button class="map-button" (click)="showRouteOnMap(route)">
+            🗺️ View on map: {{ route.name }}
+          </button>
+        } @else {
+          <div class="no-map-note">
+            📍 Taxi services available citywide - no fixed route
+          </div>
+        }
       </article>
     }
   </section>
+
+  <!-- Map Modal -->
+  @if (showMap && selectedRoute && selectedRoute.hasMap) {
+    <div class="map-modal">
+      <div class="map-modal-content">
+        <div class="map-modal-header">
+          <h3>🗺️ Route Map: {{ selectedRoute.name }}</h3>
+          <button class="close-btn" (click)="closeMap()">✕</button>
+        </div>
+        <div class="map-modal-body">
+          <div id="route-map" style="height: 400px; width: 100%; border-radius: 12px;"></div>
+        </div>
+        <div class="map-modal-footer">
+          <p>📍 From: {{ selectedRoute.from }} → To: {{ selectedRoute.to }}</p>
+          <p class="map-note">🟠 Orange line shows the jeepney route</p>
+        </div>
+      </div>
+    </div>
+  }
 
 </main>
