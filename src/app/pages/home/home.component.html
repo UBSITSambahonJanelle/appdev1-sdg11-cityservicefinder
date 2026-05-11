@@ -1,16 +1,115 @@
 <main class="home">
 
+  <!-- Hero Section -->
   <header class="hero" role="banner">
     <div class="hero-content">
       <h1>Your City, Your Services</h1>
       <p>Find emergency contacts, health services, public transport and more — all in one place for Baguio City residents.</p>
-      <div class="search-box">
-        <input type="text" placeholder="Search services, offices, hotlines..." aria-label="Search city services">
-        <button type="button">Search</button>
+      
+      <!-- Search Bar with Results and Suggestions -->
+      <div class="search-container">
+        <div class="search-box">
+          <input
+            type="text"
+            placeholder="Search services, offices, hotlines..."
+            aria-label="Search city services"
+            [(ngModel)]="searchQuery"
+            (input)="onSearchInput()"
+            (keyup.enter)="performSearch()"
+            (focus)="onSearchFocus()"
+            (blur)="onSearchBlur()"
+          >
+          <button type="button" (click)="performSearch()">Search</button>
+          <button *ngIf="searchQuery" type="button" class="clear-btn" (click)="clearSearch()">✕</button>
+        </div>
+        
+        <!-- Search Suggestions Dropdown (while typing) -->
+        @if (showSuggestions && !showResults && searchSuggestions.length > 0) {
+          <div class="search-suggestions">
+            <div class="suggestions-header">
+              <span>🔍 Search suggestions</span>
+            </div>
+            @for (suggestion of searchSuggestions; track suggestion) {
+              <div class="suggestion-item" (click)="selectSuggestion(suggestion)">
+                <span class="suggestion-icon">🔎</span>
+                <span class="suggestion-text">{{ suggestion }}</span>
+              </div>
+            }
+            <div class="suggestions-footer">
+              <span>⌨️ Press Enter to search</span>
+            </div>
+          </div>
+        }
+        
+        <!-- Popular Searches (when input is empty) -->
+        @if (showSuggestions && !searchQuery && !showResults) {
+          <div class="popular-searches">
+            <div class="popular-header">
+              <span>🔥 Popular Searches</span>
+            </div>
+            <div class="popular-tags">
+              @for (popular of popularSearches; track popular) {
+                <button class="popular-tag" (click)="selectSuggestion(popular)">
+                  {{ popular }}
+                </button>
+              }
+            </div>
+            <div class="search-tip">
+              <span>💡 Tip: Search by service name, category, or location</span>
+            </div>
+          </div>
+        }
+        
+        <!-- Search Results Dropdown -->
+        @if (showResults && searchResults.length > 0) {
+          <div class="search-results">
+            <div class="results-header">
+              <span>📋 {{ searchResults.length }} result(s) found for "{{ searchQuery }}"</span>
+            </div>
+            @for (result of searchResults; track result.id) {
+              <div class="result-item" (click)="goToService(result.id)">
+                <div class="result-icon">
+                  @switch (result.category) {
+                    @case ('emergency') { 🚨 }
+                    @case ('health') { 🏥 }
+                    @case ('welfare') { 🤝 }
+                    @case ('employment') { 💼 }
+                    @case ('government') { 🏛️ }
+                    @case ('transport') { 🚍 }
+                    @case ('utilities') { ⚡ }
+                    @default { 📍 }
+                  }
+                </div>
+                <div class="result-info">
+                  <div class="result-name">{{ result.name }}</div>
+                  <div class="result-category">{{ result.category | uppercase }}</div>
+                  <div class="result-address">{{ result.address }}</div>
+                </div>
+                <div class="result-arrow">→</div>
+              </div>
+            }
+          </div>
+        }
+        
+        <!-- No Results Message -->
+        @if (showResults && searchResults.length === 0 && searchQuery) {
+          <div class="no-results">
+            <span>🔍</span>
+            <p>No services found for "{{ searchQuery }}"</p>
+            <small>Try searching for: police, hospital, market, transport, or welfare</small>
+            <div class="no-results-suggestions">
+              <span>Popular searches:</span>
+              @for (popular of popularSearches.slice(0, 4); track popular) {
+                <button class="suggestion-tag" (click)="selectSuggestion(popular)">{{ popular }}</button>
+              }
+            </div>
+          </div>
+        }
       </div>
     </div>
   </header>
 
+  <!-- Stats Strip -->
   <section class="stats" aria-label="City service statistics">
     <div class="stat">
       <div class="stat-value">24/7</div>
@@ -26,6 +125,7 @@
     </div>
   </section>
 
+  <!-- Featured Services -->
   <section class="services">
     <h2>Available Services</h2>
     <div class="services-grid">
@@ -47,6 +147,7 @@
     </div>
   </section>
 
+  <!-- Widgets -->
   <section class="widgets" aria-label="Weather and quick actions">
     <app-weather-widget></app-weather-widget>
     <app-quick-actions></app-quick-actions>

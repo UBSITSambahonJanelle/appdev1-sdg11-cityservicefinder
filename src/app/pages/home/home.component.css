@@ -27,11 +27,17 @@
   margin-bottom: 20px;
 }
 
-.search-box {
-  display: flex;
+/* ===== UPDATED SEARCH BAR WITH RESULTS ===== */
+.search-container {
+  position: relative;
   max-width: 500px;
   margin: 0 auto;
+}
+
+.search-box {
+  display: flex;
   gap: 10px;
+  position: relative;
 }
 
 .search-box input {
@@ -40,6 +46,7 @@
   border: none;
   border-radius: 5px;
   font-size: 0.9rem;
+  padding-right: 35px;
 }
 
 .search-box button {
@@ -49,7 +56,295 @@
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  transition: all 0.2s;
 }
+
+.search-box button:hover {
+  background: #B84E1A;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 110px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ddd !important;
+  color: #333 !important;
+  padding: 4px 8px !important;
+  font-size: 12px;
+  border-radius: 50%;
+}
+
+.clear-btn:hover {
+  background: #ccc !important;
+}
+
+/* Search Results Dropdown */
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  margin-top: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.results-header {
+  padding: 10px 15px;
+  background: #F8FAFB;
+  border-bottom: 1px solid #E4E8EC;
+  font-size: 0.75rem;
+  color: #6A7A72;
+  font-weight: 600;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border-bottom: 1px solid #E4E8EC;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.result-item:hover {
+  background: #F8FAFB;
+  padding-left: 20px;
+}
+
+.result-icon {
+  font-size: 1.5rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.result-info {
+  flex: 1;
+}
+
+.result-name {
+  font-weight: 600;
+  color: #1B4332;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.result-category {
+  font-size: 0.65rem;
+  color: #D4622A;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.result-address {
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.result-arrow {
+  color: #D4622A;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.result-item:hover .result-arrow {
+  opacity: 1;
+}
+
+/* No Results */
+.no-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  margin-top: 8px;
+  padding: 30px 20px;
+  text-align: center;
+  z-index: 100;
+}
+
+.no-results span {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.no-results p {
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.no-results small {
+  color: #999;
+  font-size: 0.75rem;
+}
+
+/* ===== SEARCH SUGGESTIONS STYLES ===== */
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  margin-top: 8px;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+  overflow: hidden;
+}
+
+.suggestions-header {
+  padding: 10px 15px;
+  background: #F8FAFB;
+  border-bottom: 1px solid #E4E8EC;
+  font-size: 0.7rem;
+  color: #6A7A72;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 1px solid #F8FAFB;
+}
+
+.suggestion-item:hover {
+  background: #F8FAFB;
+  padding-left: 20px;
+}
+
+.suggestion-icon {
+  font-size: 1rem;
+  color: #D4622A;
+}
+
+.suggestion-text {
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.suggestions-footer {
+  padding: 8px 15px;
+  background: #F8FAFB;
+  font-size: 0.65rem;
+  color: #999;
+  text-align: center;
+}
+
+/* Popular Searches */
+.popular-searches {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  margin-top: 8px;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+  overflow: hidden;
+}
+
+.popular-header {
+  padding: 10px 15px;
+  background: #F8FAFB;
+  border-bottom: 1px solid #E4E8EC;
+  font-size: 0.7rem;
+  color: #6A7A72;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.popular-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 15px;
+}
+
+.popular-tag {
+  padding: 6px 14px;
+  background: #EEF5EF;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: #1B4332;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.popular-tag:hover {
+  background: #1B4332;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.search-tip {
+  padding: 10px 15px;
+  background: #FFF8F0;
+  border-top: 1px solid #E4E8EC;
+  font-size: 0.7rem;
+  color: #D4622A;
+  text-align: center;
+}
+
+/* No Results Suggestions */
+.no-results-suggestions {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #E4E8EC;
+}
+
+.no-results-suggestions span {
+  font-size: 0.7rem;
+  color: #666;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.suggestion-tag {
+  padding: 4px 10px;
+  background: #EEF5EF;
+  border: none;
+  border-radius: 15px;
+  font-size: 0.7rem;
+  color: #1B4332;
+  cursor: pointer;
+  margin: 0 4px 4px 0;
+  transition: all 0.2s;
+}
+
+.suggestion-tag:hover {
+  background: #1B4332;
+  color: white;
+}
+
+/* ===== EXISTING STYLES ===== */
 
 /* Stats - Full Width with background */
 .stats {
@@ -209,5 +504,35 @@
   }
   .widgets {
     grid-template-columns: 1fr;
+  }
+  
+  /* New responsive for search */
+  .search-container {
+    width: 100%;
+  }
+  .search-results {
+    max-height: 300px;
+  }
+  .result-item {
+    padding: 10px 12px;
+  }
+  .result-name {
+    font-size: 0.8rem;
+  }
+  .clear-btn {
+    right: 80px;
+  }
+  
+  /* Suggestions responsive */
+  .popular-tags {
+    gap: 6px;
+    padding: 12px;
+  }
+  .popular-tag {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+  .suggestion-text {
+    font-size: 0.8rem;
   }
 }
