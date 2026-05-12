@@ -26,4 +26,19 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent },
+
+  // Protected routes — authGuard now returns UrlTree for clean redirect
+  { path: 'dashboard',    component: DashboardComponent,    canActivate: [authGuard] },
+  { path: 'saved',        component: SavedServicesComponent, canActivate: [authGuard] },
+
+  {
+    path: 'report',
+    component: ReportIssueComponent,
+    canActivate:   [authGuard],
+    canDeactivate: [unsavedGuard]
+  },
+
+  { path: 'about', component: AboutComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '**',    component: NotFoundComponent },
 ];
