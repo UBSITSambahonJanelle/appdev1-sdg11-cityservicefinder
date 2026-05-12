@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, inject, signal, computed } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { CityService } from '../../services/city.service';
 import { CityService as CityServiceModel } from '../../models/service';
 
@@ -12,18 +12,24 @@ import { CityService as CityServiceModel } from '../../models/service';
   styleUrls: ['./service-detail.component.css']
 })
 export class ServiceDetailComponent implements OnInit {
-  @Input() id!: string;
-
   private cityService = inject(CityService);
-  private _service = signal<CityServiceModel | undefined>(undefined);
-  service  = computed(() => this._service());
-  isSaved  = computed(() => this.cityService.isSaved(Number(this.id)));
+  private route = inject(ActivatedRoute);
+  
+  service: CityServiceModel | undefined;
+  isSaved = false;
 
   ngOnInit(): void {
-    this._service.set(this.cityService.getServiceById(Number(this.id)));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.service = this.cityService.getServiceById(id);
+    if (this.service) {
+      this.isSaved = this.cityService.isSaved(this.service.id);
+    }
   }
 
   toggleSave(): void {
-    this.cityService.toggleSave(Number(this.id));
+    if (this.service) {
+      this.cityService.toggleSave(this.service.id);
+      this.isSaved = this.cityService.isSaved(this.service.id);
+    }
   }
 }

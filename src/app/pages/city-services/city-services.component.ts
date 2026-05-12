@@ -14,7 +14,7 @@ export class CityServicesComponent {
   cityService = inject(CityService);
 
   selectedFilter = 'All';
-  filters = ['All', 'Emergency', 'Health', 'Welfare', 'Employment'];
+  filters = ['All', 'Emergency', 'Health', 'Welfare', 'Employment', 'Government', 'Transport', 'Utilities'];
 
   get filteredServices() {
     const all = this.cityService.getAllServices();

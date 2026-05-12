@@ -1,38 +1,83 @@
-<nav class="navbar" role="navigation" aria-label="Main navigation">
+<nav class="navbar">
   <div class="nav-container">
-
+    
+    <!-- Brand - Left Side -->
     <div class="nav-brand">
-      <a routerLink="/home" aria-label="City Service Finder home">
-        🏔️ City Service Finder
-      </a>
+      <a routerLink="/home">🏔️ City Service Finder</a>
       <small>BAGUIO CITY SERVICES</small>
     </div>
 
+    <!-- Navigation Links - Center -->
     <div class="nav-links">
-      <a routerLink="/home"          routerLinkActive="active" aria-label="Home">Home</a>
-      <a routerLink="/emergency"     routerLinkActive="active" aria-label="Emergency contacts">Emergency</a>
-      <a routerLink="/transport"     routerLinkActive="active" aria-label="Transport routes">Transport</a>
-      <a routerLink="/city-services" routerLinkActive="active" aria-label="City services list">City Services</a>
-      <a routerLink="/dashboard"     routerLinkActive="active" aria-label="Dashboard">Dashboard</a>
-      <a routerLink="/about"         routerLinkActive="active" aria-label="About SDG 11">About SDG 11</a>
-      <a routerLink="/login"         routerLinkActive="active" aria-label="Login">Login</a>
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a routerLink="/emergency" routerLinkActive="active">Emergency</a>
+      <a routerLink="/transport" routerLinkActive="active">Transport</a>
+      <a routerLink="/city-services" routerLinkActive="active">City Services</a>
+      <a routerLink="/about" routerLinkActive="active">About SDG 11</a>
+      <a routerLink="/login" routerLinkActive="active" *ngIf="!authService.isLoggedIn()">Login</a>
+      <a routerLink="/dashboard" routerLinkActive="active" *ngIf="authService.isLoggedIn()">Dashboard</a>
+      <a *ngIf="authService.isLoggedIn()" (click)="logout()" class="logout-link">Logout</a>
     </div>
 
-    <div class="nav-actions">
-      <!-- Sign In links to /login, logout links back to /home -->
-      @if (authService.isLoggedIn()) {
-        <button class="sign-in" (click)="authService.logout()" aria-label="Sign out">
-          Sign Out
-        </button>
-      } @else {
-        <a routerLink="/login" class="sign-in" aria-label="Sign in to your account">
-          Sign In
-        </a>
-      }
-      <a routerLink="/report" class="report" aria-label="Report a community issue">
-        Report Issue
-      </a>
+    <!-- Right Side: Search Bar + Report Button -->
+    <div class="nav-right">
+      <!-- Search Bar (hidden on home page) -->
+      <div class="search-container" *ngIf="showSearchBar">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            class="search-input"
+            placeholder="Search services..."
+            [(ngModel)]="searchQuery"
+            (input)="onSearchInput()"
+            (focus)="showDropdown = searchQuery.trim().length > 0"
+            autocomplete="off">
+          <button *ngIf="searchQuery" class="search-clear" (click)="clearSearch()">✕</button>
+        </div>
+        
+        <!-- Search Dropdown -->
+        <div class="search-dropdown" *ngIf="showDropdown">
+          <div *ngIf="searchResults().length === 0" class="search-no-results">
+            <span>🔍</span>
+            <p>No services found for "{{ searchQuery }}"</p>
+            <small>Try: police, hospital, jeepney, fire, mayor</small>
+          </div>
+          <div *ngFor="let service of searchResults()" class="search-result-item" (click)="selectResult(service)">
+            <div class="result-icon" [style.backgroundColor]="getCategoryColor(service.category)">
+              {{ getCategoryIcon(service.category) }}
+            </div>
+            <div class="result-content">
+              <div class="result-title">{{ service.name }}</div>
+              <div class="result-category">{{ service.category | titlecase }}</div>
+              <div class="result-description">{{ service.description | slice:0:45 }}...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Report Issue Button -->
+      <a routerLink="/report" class="report-btn">Report Issue</a>
     </div>
 
+    <!-- Mobile Menu Toggle (if needed) -->
+    <div class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Mobile Menu (hidden by default) -->
+  <div class="mobile-menu" [class.active]="isMobileMenuOpen">
+    <a routerLink="/home" (click)="closeMobileMenu()">Home</a>
+    <a routerLink="/emergency" (click)="closeMobileMenu()">Emergency</a>
+    <a routerLink="/transport" (click)="closeMobileMenu()">Transport</a>
+    <a routerLink="/city-services" (click)="closeMobileMenu()">City Services</a>
+    <a routerLink="/about" (click)="closeMobileMenu()">About SDG 11</a>
+    <a routerLink="/login" (click)="closeMobileMenu()" *ngIf="!authService.isLoggedIn()">Login</a>
+    <a routerLink="/dashboard" (click)="closeMobileMenu()" *ngIf="authService.isLoggedIn()">Dashboard</a>
+    <a *ngIf="authService.isLoggedIn()" (click)="logout(); closeMobileMenu()" class="logout-link">Logout</a>
+    <a routerLink="/report" (click)="closeMobileMenu()" class="report-mobile">Report Issue</a>
   </div>
 </nav>

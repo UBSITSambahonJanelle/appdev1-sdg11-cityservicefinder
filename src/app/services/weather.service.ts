@@ -10,11 +10,11 @@ export class WeatherService {
   private apiKey  = environment.openWeatherMapKey;
   private baseUrl = environment.openWeatherMapBase;
 
-  // Baguio City coordinates — 16.4023°N, 120.5960°E
+  
   private readonly lat = 16.4023;
   private readonly lon = 120.5960;
 
-  // Returns an Observable — components use async pipe, no .subscribe() needed
+  
   getWeatherByCoordinates(): Observable<WeatherResponse> {
     const url = `${this.baseUrl}/weather?lat=${this.lat}&lon=${this.lon}&units=metric&appid=${this.apiKey}`;
     return this.http.get<WeatherResponse>(url).pipe(

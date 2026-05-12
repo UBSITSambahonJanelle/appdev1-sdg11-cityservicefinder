@@ -1,23 +1,27 @@
 <main class="saved-services" aria-label="Your saved city services">
-  <header>
+  <header class="page-header">
     <h1>⭐ Saved Services</h1>
     <p>Services you have saved for quick access.</p>
   </header>
 
-  @if (cityService.savedServices().length === 0) {
-    <section class="empty-state" aria-label="No saved services">
-      <p>You haven't saved any services yet.</p>
-      <p>Browse <a routerLink="/city-services">City Services</a> and tap ☆ Save to add them here.</p>
-    </section>
+  @if (savedServices.length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">📌</div>
+      <h3>No saved services yet</h3>
+      <p>Start saving services you frequently use by clicking the ★ Save button on any service card.</p>
+      <a routerLink="/city-services" class="browse-btn">Browse City Services →</a>
+    </div>
   } @else {
-    <section class="saved-grid" aria-label="List of saved services">
-      @for (service of cityService.savedServices(); track service.id) {
-        <app-service-card
-          [service]="service"
-          [isSaved]="true"
-          (toggleSave)="onToggleSave($event)">
-        </app-service-card>
+    <div class="saved-grid">
+      @for (service of savedServices; track service.id) {
+        <div class="saved-card-wrapper">
+          <app-service-card
+            [service]="service"
+            [isSaved]="true"
+            (toggleSave)="onToggleSave($event)">
+          </app-service-card>
+        </div>
       }
-    </section>
+    </div>
   }
 </main>

@@ -1,102 +1,182 @@
-<main class="about" aria-label="About SDG 11 and this application">
+<main class="about-page">
 
-  <header class="about-hero">
-    <h1>Sustainable Cities and Communities</h1>
-    <p>SDG Goal 11 — Make cities inclusive, safe, resilient and sustainable.</p>
-  </header>
 
-  <!-- Live REST Countries API data -->
-  <section class="api-section" aria-label="Philippines country data from REST Countries API">
-    <h2>🇵🇭 Philippines at a Glance</h2>
-    <p class="api-note">Live data from the REST Countries API</p>
-
-    <ng-container *ngIf="philippinesState$ | async as state">
-
-      <div class="loading" *ngIf="state.loading" role="status" aria-live="polite">
-        <div class="spinner" aria-hidden="true"></div>
-        <p>Loading Philippines data...</p>
-      </div>
-
-      <div class="error" *ngIf="state.error && !state.loading" role="alert">
-        <p>⚠️ Unable to fetch live data. Check your internet connection.</p>
-      </div>
-
-      <div class="country-info" *ngIf="state.data as country">
-        <div class="info-row">
-          <span class="label">Country</span>
-          <span class="value">{{ country.name.common }}</span>
-        </div>
-        <div class="info-row">
-          <span class="label">Capital</span>
-          <span class="value">{{ country.capital[0] }}</span>
-        </div>
-        <div class="info-row">
-          <span class="label">Population</span>
-          <span class="value">{{ country.population | number }}</span>
-        </div>
-        <div class="info-row">
-          <span class="label">Region</span>
-          <span class="value">{{ country.region }}</span>
-        </div>
-        <div class="info-row">
-          <span class="label">Land Area</span>
-          <span class="value">{{ country.area | number }} km²</span>
-        </div>
-      </div>
-
-    </ng-container>
-  </section>
-
-  <!-- SDG 11 Targets -->
-  <section class="sdg-targets" aria-label="SDG 11 targets addressed by this application">
-    <h2>SDG 11 Targets We Address</h2>
-    <div class="target-grid">
-      <article class="target">
-        <h3>11.2 — Accessible Transport</h3>
-        <p>Providing complete Baguio City jeepney route information to help residents navigate affordable public transport.</p>
-      </article>
-      <article class="target">
-        <h3>11.5 — Disaster Resilience</h3>
-        <p>Centralizing emergency contacts for police, fire, hospital, and CDRRMO so residents can respond quickly during crises.</p>
-      </article>
-      <article class="target">
-        <h3>11.7 — Inclusive Public Services</h3>
-        <p>Making welfare, employment, and health services visible and accessible to all Baguio City residents in one platform.</p>
-      </article>
+  <div class="hero-section">
+    <div class="hero-overlay">
+      <h1>Sustainable Cities and Communities</h1>
+      <p class="hero-subtitle">SDG Goal 11 — Make cities inclusive, safe, resilient and sustainable</p>
+      <span class="hero-badge">Baguio City's Commitment</span>
     </div>
-  </section>
+  </div>
 
-  <footer class="about-footer">
-    <p>Built by University of Baguio — School of Information Technology</p>
-    <p>APPDEV1 Group Project · S.Y. 2025–2026</p>
-  </footer>
+  <div class="container">
 
-</main>
-```
+    
+    <div class="card">
+      <div class="card-content">
+        <h2>🎯 What is SDG 11?</h2>
+        <p><strong>Sustainable Development Goal 11</strong> aims to <strong>"make cities and human settlements inclusive, safe, resilient, and sustainable"</strong> by 2030. It is one of the 17 global goals established by the United Nations in 2015.</p>
+        <p>With <strong>over 4.4 billion people (55% of the world's population)</strong> living in cities today — expected to reach <strong>68% by 2050</strong> — SDG 11 addresses critical urban challenges including inadequate housing, air pollution, traffic congestion, lack of public transport, and limited access to public services.</p>
+        <p>The goal has <strong>10 targets</strong> covering housing, transport, disaster resilience, environmental impact, public spaces, and cultural heritage.</p>
+      </div>
+    </div>
 
-### saved-services.component.html — replace whole file
+    
+    <div class="section-header">
+      <h2>📋 SDG 11 Targets We Address</h2>
+    </div>
 
-```html
-<main class="saved-services" aria-label="Your saved city services">
-  <header>
-    <h1>⭐ Saved Services</h1>
-    <p>Services you have saved for quick access.</p>
-  </header>
+    <div class="cards-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🚌</div>
+        <h3>Target 11.2 — Accessible Transport</h3>
+        <p>By 2030, provide access to <strong>safe, affordable, accessible, and sustainable transport systems</strong> for all, improving road safety and expanding public transport.</p>
+        <div class="highlight">
+          <strong>In Baguio City:</strong> Our app provides complete jeepney route information, modern PUJ details, and transport cooperative contacts to help residents choose public transport over private vehicles — reducing traffic and emissions.
+        </div>
+      </div>
 
-  @if (cityService.savedServices().length === 0) {
-    <section class="empty-state" aria-label="No saved services">
-      <p>You haven't saved any services yet.</p>
-      <p>Browse <a routerLink="/city-services">City Services</a> and tap ☆ Save to add them here.</p>
-    </section>
-  } @else {
-    <section class="saved-grid" aria-label="List of saved services">
-      @for (service of cityService.savedServices(); track service.id) {
-        <app-service-card
-          [service]="service"
-          [isSaved]="true"
-          (toggleSave)="onToggleSave($event)">
-        </app-service-card>
+      <div class="feature-card">
+        <div class="feature-icon">🚨</div>
+        <h3>Target 11.5 — Disaster Resilience</h3>
+        <p>Significantly reduce the number of deaths and people affected by disasters, focusing on protecting the poor and vulnerable.</p>
+        <div class="highlight">
+          <strong>In Baguio City:</strong> Our app centralizes 24/7 emergency contacts for CDRRMO, BCPO, Fire Department, and BGHMC — enabling quick response during earthquakes, typhoons, landslides, and fires in all 128 barangays.
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏛️</div>
+        <h3>Target 11.7 — Inclusive Public Services</h3>
+        <p>Provide universal access to <strong>safe, inclusive, and accessible green and public spaces</strong>, particularly for women, children, elderly, and persons with disabilities.</p>
+        <div class="highlight">
+          <strong>In Baguio City:</strong> Our app connects all 128 barangays to City Hall services, DSWD assistance, PESO employment programs, and City Health Office — ensuring no one is left behind.
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="card">
+      <div class="card-content">
+        <h2>🌍 Baguio City's SDG Journey</h2>
+        <p>Baguio City is a <strong>pioneer in the Philippines</strong> for localizing the Sustainable Development Goals. In partnership with the <strong>United Nations Development Programme (UNDP)</strong>, the city completed its first <strong>Voluntary Local Review (VLR)</strong> of the SDGs in 2025 — making it one of the few cities in Southeast Asia to do so.</p>
+        <p>The VLR was developed through <strong>18 months of participatory planning</strong> involving <strong>all 128 barangays</strong>, civil society organizations, youth groups, national agencies, and academic institutions including the University of Baguio.</p>
+        <p>The city's long-term vision, <strong>"Baguio 2043: A Livable, Inclusive, and Creative City"</strong>, places <strong>SDG 11 at its core</strong> with commitments to sustainable urban development, disaster resilience, and inclusive public services.</p>
+      </div>
+    </div>
+
+    
+    <div class="card">
+      <div class="card-content">
+        <h2>⚠️ Why Baguio City Needs SDG 11</h2>
+        <p>Baguio faces unique urbanization challenges that make SDG 11 critically important:</p>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <span class="stat-number">400,000+</span>
+            <span class="stat-label">Residents</span>
+            <span class="stat-note">vs 30,000 ideal capacity</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">100,000+</span>
+            <span class="stat-label">Vehicles</span>
+            <span class="stat-note">only 8,000 parking slots</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">300-400</span>
+            <span class="stat-label">Tons of waste/day</span>
+            <span class="stat-note">strain on disposal system</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">1,000%</span>
+            <span class="stat-label">Over Capacity</span>
+            <span class="stat-note">Population exceeds limit</span>
+          </div>
+        </div>
+        <p class="note">According to the city's Voluntary Local Review, accelerated efforts are needed to achieve the SDGs by 2030 — particularly in transportation accessibility, disaster preparedness, and inclusive access to government services.</p>
+      </div>
+    </div>
+
+    
+    <div class="card">
+      <div class="card-content">
+        <h2>📱 How Our App Supports SDG 11 in Baguio</h2>
+        <ul>
+          <li><strong>🚌 Transport Route Finder</strong> — Complete jeepney route information promoting public transport use (Target 11.2)</li>
+          <li><strong>🚨 Emergency Hotline</strong> — One-tap access to CDRRMO, police, fire, and hospital services (Target 11.5)</li>
+          <li><strong>🏛️ Government Services Directory</strong> — Easy access to City Hall, DSWD, PESO, and Health Office for all 128 barangays (Target 11.7)</li>
+        </ul>
+        <p class="note">By making these services visible, accessible, and easy to use, we help Baguio residents navigate their city safely and efficiently — moving toward the vision of <strong>"No one is left behind"</strong>.</p>
+      </div>
+    </div>
+
+    
+    <div class="api-section">
+      <div class="api-header">
+        <h2>🇵🇭 Philippines at a Glance</h2>
+        <span class="api-badge">Live Data</span>
+      </div>
+      <p class="api-note">Live data from the REST Countries API — Baguio City is part of the Cordillera Administrative Region (CAR)</p>
+
+      @if (philippinesState$ | async; as state) {
+        @if (state.loading) {
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading Philippines data...</p>
+          </div>
+        } @else if (state.error) {
+          <div class="error">
+            <p>⚠️ Unable to fetch live data. Please check your internet connection.</p>
+            <button (click)="refreshData()" class="retry-btn">Retry</button>
+          </div>
+        } @else if (state.data) {
+          <div class="info-grid">
+            <div class="info-row">
+              <span class="label">Country</span>
+              <span class="value">{{ state.data.name.common }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Capital</span>
+              <span class="value">{{ state.data.capital[0] }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Population</span>
+              <span class="value">{{ state.data.population | number }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Region</span>
+              <span class="value">{{ state.data.region }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Land Area</span>
+              <span class="value">{{ state.data.area | number }} km²</span>
+            </div>
+          </div>
+        }
       }
-    </section>
-  }
+    </div>
+
+    
+    <div class="cta-section">
+      <h2>🌱 How You Can Help Achieve SDG 11 in Baguio</h2>
+      <div class="cta-grid">
+        <div class="cta-item">🚌 Use public transport (jeepneys/taxis)</div>
+        <div class="cta-item">🗑️ Practice waste segregation at home</div>
+        <div class="cta-item">💧 Conserve water during dry season</div>
+        <div class="cta-item">🌳 Support green spaces and tree planting</div>
+        <div class="cta-item">🚨 Save emergency contacts in your phone</div>
+        <div class="cta-item">📢 Report issues to Baguio City Hall</div>
+        <div class="cta-item">♻️ Avoid single-use plastics</div>
+        <div class="cta-item">🚶 Walk when possible around Session Road</div>
+      </div>
+      <p class="source-note">Sources: United Nations SDG 11, UNDP Philippines, Baguio City VLR 2025, Baguio City LGU</p>
+    </div>
+
+   
+    <div class="footer">
+      <p>🌲 Baguio City Service Finder — Supporting SDG 11: Sustainable Cities and Communities 🌲</p>
+      <p>Built by University of Baguio — School of Information Technology</p>
+      <p>APPDEV1 Group Project · S.Y. 2025–2026</p>
+    </div>
+
+  </div>
 </main>
