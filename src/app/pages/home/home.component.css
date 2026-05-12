@@ -3,7 +3,7 @@
   min-height: calc(100vh - 200px);
 }
 
-/* Hero - Full Width */
+
 .hero {
   background: linear-gradient(135deg, #1B4332, #2A5C44);
   color: white;
@@ -27,7 +27,7 @@
   margin-bottom: 20px;
 }
 
-/* ===== UPDATED SEARCH BAR WITH RESULTS ===== */
+
 .search-container {
   position: relative;
   max-width: 500px;
@@ -79,7 +79,7 @@
   background: #ccc !important;
 }
 
-/* Search Results Dropdown */
+
 .search-results {
   position: absolute;
   top: 100%;
@@ -165,7 +165,7 @@
   opacity: 1;
 }
 
-/* No Results */
+
 .no-results {
   position: absolute;
   top: 100%;
@@ -196,7 +196,7 @@
   font-size: 0.75rem;
 }
 
-/* ===== SEARCH SUGGESTIONS STYLES ===== */
+
 .search-suggestions {
   position: absolute;
   top: 100%;
@@ -255,7 +255,7 @@
   text-align: center;
 }
 
-/* Popular Searches */
+
 .popular-searches {
   position: absolute;
   top: 100%;
@@ -313,7 +313,7 @@
   text-align: center;
 }
 
-/* No Results Suggestions */
+
 .no-results-suggestions {
   margin-top: 15px;
   padding-top: 15px;
@@ -344,9 +344,7 @@
   color: white;
 }
 
-/* ===== EXISTING STYLES ===== */
 
-/* Stats - Full Width with background */
 .stats {
   display: flex;
   justify-content: space-around;
@@ -373,7 +371,7 @@
   color: #6A7A72;
 }
 
-/* Services Section */
+
 .services {
   padding: 20px;
   width: 100%;
@@ -393,7 +391,7 @@
   width: 100%;
 }
 
-/* Card Wrapper */
+
 .card-wrapper {
   display: flex;
   flex-direction: column;
@@ -437,7 +435,7 @@
   transform: translateX(3px);
 }
 
-/* See All Button */
+
 .see-all {
   text-align: center;
   margin-top: 2rem;
@@ -475,7 +473,7 @@
   transform: translateX(4px);
 }
 
-/* Widgets */
+
 .widgets {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -486,7 +484,7 @@
   margin: 0 auto;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .hero {
     padding: 40px 15px;
@@ -506,7 +504,7 @@
     grid-template-columns: 1fr;
   }
   
-  /* New responsive for search */
+  
   .search-container {
     width: 100%;
   }
@@ -523,7 +521,7 @@
     right: 80px;
   }
   
-  /* Suggestions responsive */
+  
   .popular-tags {
     gap: 6px;
     padding: 12px;

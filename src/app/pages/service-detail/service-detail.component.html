@@ -3,7 +3,7 @@
 
   @if (service) {
     <div class="service-detail-card">
-      <!-- Header Section -->
+   
       <div class="detail-header">
         <div>
           <span class="category-badge">{{ service.category | uppercase }}</span>
@@ -14,13 +14,13 @@
         </div>
       </div>
 
-      <!-- Description Section -->
+      
       <div class="detail-section">
         <h3>📋 About</h3>
         <p class="detail-description">{{ service.description }}</p>
       </div>
 
-      <!-- Contact Information -->
+     
       <div class="detail-section">
         <h3>📞 Contact Information</h3>
         <div class="info-grid">
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <!-- Emergency Numbers Section (for police stations) -->
+     
       @if (service.category === 'emergency') {
         <div class="detail-section emergency-numbers">
           <h3>🚨 Emergency Hotlines</h3>
@@ -82,7 +82,7 @@
         </div>
       }
 
-      <!-- Action Buttons -->
+    
       <div class="detail-actions">
         <a [href]="'tel:' + service.phone" class="call-btn">
           📞 Call {{ service.name }}
@@ -92,7 +92,7 @@
         </button>
       </div>
 
-      <!-- Additional Info -->
+   
       <div class="detail-footer">
         <p>💡 Tip: Save this service for quick access from your dashboard.</p>
       </div>

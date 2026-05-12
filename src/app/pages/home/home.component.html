@@ -1,12 +1,12 @@
 <main class="home">
 
-  <!-- Hero Section -->
+  
   <header class="hero" role="banner">
     <div class="hero-content">
       <h1>Your City, Your Services</h1>
       <p>Find emergency contacts, health services, public transport and more — all in one place for Baguio City residents.</p>
       
-      <!-- Search Bar with Results and Suggestions -->
+      
       <div class="search-container">
         <div class="search-box">
           <input
@@ -23,7 +23,7 @@
           <button *ngIf="searchQuery" type="button" class="clear-btn" (click)="clearSearch()">✕</button>
         </div>
         
-        <!-- Search Suggestions Dropdown (while typing) -->
+        
         @if (showSuggestions && !showResults && searchSuggestions.length > 0) {
           <div class="search-suggestions">
             <div class="suggestions-header">
@@ -41,7 +41,7 @@
           </div>
         }
         
-        <!-- Popular Searches (when input is empty) -->
+        
         @if (showSuggestions && !searchQuery && !showResults) {
           <div class="popular-searches">
             <div class="popular-header">
@@ -60,7 +60,7 @@
           </div>
         }
         
-        <!-- Search Results Dropdown -->
+        
         @if (showResults && searchResults.length > 0) {
           <div class="search-results">
             <div class="results-header">
@@ -91,7 +91,7 @@
           </div>
         }
         
-        <!-- No Results Message -->
+        
         @if (showResults && searchResults.length === 0 && searchQuery) {
           <div class="no-results">
             <span>🔍</span>
@@ -109,7 +109,7 @@
     </div>
   </header>
 
-  <!-- Stats Strip -->
+  
   <section class="stats" aria-label="City service statistics">
     <div class="stat">
       <div class="stat-value">24/7</div>
@@ -125,7 +125,7 @@
     </div>
   </section>
 
-  <!-- Featured Services -->
+  
   <section class="services">
     <h2>Available Services</h2>
     <div class="services-grid">
@@ -147,7 +147,7 @@
     </div>
   </section>
 
-  <!-- Widgets -->
+ 
   <section class="widgets" aria-label="Weather and quick actions">
     <app-weather-widget></app-weather-widget>
     <app-quick-actions></app-quick-actions>

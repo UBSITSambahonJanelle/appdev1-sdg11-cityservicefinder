@@ -15,7 +15,7 @@
   margin-bottom: 2rem;
 }
 
-/* Filter Buttons */
+
 .filter-buttons {
   display: flex;
   gap: 1rem;
@@ -47,7 +47,7 @@
   box-shadow: 0 2px 8px rgba(27, 67, 50, 0.3);
 }
 
-/* Route Cards */
+
 .routes-list {
   display: flex;
   flex-direction: column;
@@ -101,7 +101,7 @@
   font-style: italic;
 }
 
-/* Route Details Section */
+
 .route-details-section {
   background: #F8FAFB;
   border-radius: 12px;
@@ -137,7 +137,7 @@
   flex: 1;
 }
 
-/* Route Info Badges */
+
 .route-info {
   display: flex;
   gap: 1rem;
@@ -164,7 +164,7 @@
   font-weight: 500;
 }
 
-/* Map Button */
+
 .map-button {
   width: 100%;
   background: linear-gradient(135deg, #1B4332, #2A5C44);
@@ -185,7 +185,7 @@
   box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2);
 }
 
-/* No Map Note */
+
 .no-map-note {
   font-size: 0.75rem;
   color: #666;
@@ -196,7 +196,7 @@
   margin-top: 0.5rem;
 }
 
-/* Map Modal */
+
 .map-modal {
   position: fixed;
   top: 0;
@@ -220,9 +220,9 @@
   background: white;
   border-radius: 20px;
   width: 90%;
-  max-width: 1000px;  /* Increased from 900px to 1000px */
+  max-width: 1000px;  
   height: auto;
-  min-height: 580px;  /* Increased from 500px to 580px */
+  min-height: 580px; 
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -267,19 +267,19 @@
   flex: 1;
   padding: 1rem;
   position: relative;
-  min-height: 450px;  /* Increased from 400px to 450px */
+  min-height: 450px;  
 }
 
-/* Leaflet Map Styles */
+
 #route-map {
   width: 100%;
-  height: 450px;  /* Increased from 400px to 450px */
+  height: 450px;  
   border-radius: 12px;
   background: #e8f0ea;
   z-index: 1;
 }
 
-/* Custom Marker Styles */
+
 .custom-marker {
   background: transparent;
   border: none;
@@ -288,7 +288,7 @@
   filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
 }
 
-/* Routing Machine Styles */
+
 .leaflet-routing-container {
   background: white;
   border-radius: 12px;
@@ -331,31 +331,31 @@
   color: white;
 }
 
-/* Route line styling */
+
 .leaflet-routing-line {
   stroke: #D4622A;
   stroke-width: 5;
   stroke-dasharray: none;
 }
 
-/* Waypoint markers */
+
 .leaflet-routing-waypoint {
   background: transparent;
 }
 
-/* Instruction icons */
+
 .leaflet-routing-icon {
   background-image: none;
 }
 
-/* Loading indicator */
+
 .leaflet-routing-container .leaflet-routing-loading {
   text-align: center;
   padding: 10px;
   color: #666;
 }
 
-/* Route arrow */
+
 .route-arrow {
   background: transparent;
   border: none;
@@ -364,7 +364,7 @@
   text-shadow: 0 0 2px white;
 }
 
-/* Leaflet tile loading optimization */
+
 .leaflet-tile-pane {
   will-change: transform;
 }
@@ -373,7 +373,7 @@
   transition: none;
 }
 
-/* Map Modal Footer */
+
 .map-modal-footer {
   display: flex;
   justify-content: space-between;
@@ -385,7 +385,7 @@
 
 .map-modal-footer p {
   margin: 0;
-  font-size: 0.9rem;  /* Slightly increased */
+  font-size: 0.9rem;  
   color: #1B4332;
   font-weight: 500;
 }
@@ -398,7 +398,7 @@
   gap: 0.3rem;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .transport-page {
     padding: 1rem;
@@ -461,7 +461,7 @@
   }
 }
 
-/* Scrollbar styling */
+
 .leaflet-routing-container::-webkit-scrollbar {
   width: 6px;
 }

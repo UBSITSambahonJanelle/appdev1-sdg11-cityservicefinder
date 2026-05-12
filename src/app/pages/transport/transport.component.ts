@@ -19,7 +19,7 @@ export class TransportComponent {
   routingControl: any = null;
   
   routes = [
-    // ========== EXISTING ROUTES R-01 to R-30 ==========
+    
     { 
       code: 'R-01', 
       name: 'Mines View Line', 
@@ -471,7 +471,7 @@ export class TransportComponent {
       endCoords: [16.3700, 120.6100]
     },
 
-    // ========== ADDITIONAL ROUTES WITH BUILDING NAMES (J-11 to J-20) ==========
+    
     { 
       code: 'J-11', 
       name: 'Lourdes Subdivision – Lourdes Grotto', 

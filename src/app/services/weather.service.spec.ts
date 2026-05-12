@@ -7,7 +7,7 @@ describe('WeatherService', () => {
   let service: WeatherService;
   let httpMock: HttpTestingController;
 
-  // Minimal mock that matches the WeatherResponse interface
+  
   const mockWeatherResponse = {
     name: 'Baguio City',
     dt: 1700000000,
@@ -38,16 +38,16 @@ describe('WeatherService', () => {
   });
 
   afterEach(() => {
-    // Verifies no unexpected HTTP requests were made
+    
     httpMock.verify();
   });
 
-  // Test 1: Service is injectable
+  
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  // Test 2: Successful HTTP GET returns correct weather data
+  
   it('should fetch weather data for Baguio City coordinates and return correct temperature', () => {
     service.getWeatherByCoordinates().subscribe(data => {
       expect(data.name).toBe('Baguio City');
@@ -63,7 +63,7 @@ describe('WeatherService', () => {
     req.flush(mockWeatherResponse);
   });
 
-  // Test 3: catchError transforms HTTP errors into user-friendly messages
+  
   it('should handle API errors and return a user-friendly error message via catchError', () => {
     service.getWeatherByCoordinates().subscribe({
       next: () => fail('Expected an error to be thrown'),

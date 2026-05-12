@@ -15,11 +15,11 @@ export class LandingComponent {
   private auth = inject(AuthService);
   private router = inject(Router);
 
-  // Login fields
+  
   email = '';
   password = '';
   
-  // Signup fields
+  
   signupName = '';
   signupEmail = '';
   signupPassword = '';
@@ -36,7 +36,7 @@ export class LandingComponent {
     this.isLoginMode = !this.isLoginMode;
     this.errorMsg = '';
     this.successMsg = '';
-    // Clear fields when switching modes
+    
     if (this.isLoginMode) {
       this.email = this.signupEmail || '';
       this.password = '';
@@ -88,17 +88,17 @@ export class LandingComponent {
   }
 
   async signup(): Promise<void> {
-    // Clear previous messages
+    
     this.errorMsg = '';
     this.successMsg = '';
     
-    // Validate name
+   
     if (!this.signupName.trim()) {
       this.errorMsg = 'Please enter your full name.';
       return;
     }
     
-    // Validate email
+   
     if (!this.signupEmail.trim()) {
       this.errorMsg = 'Please enter your email address.';
       return;
@@ -108,7 +108,7 @@ export class LandingComponent {
       return;
     }
     
-    // Validate password
+    
     if (!this.signupPassword) {
       this.errorMsg = 'Please enter a password.';
       return;
@@ -118,7 +118,7 @@ export class LandingComponent {
       return;
     }
     
-    // Validate confirm password
+    
     if (this.signupPassword !== this.confirmPassword) {
       this.errorMsg = 'Passwords do not match.';
       return;
@@ -132,7 +132,7 @@ export class LandingComponent {
 
     if (result.success) {
       this.successMsg = result.message || 'Account created successfully!';
-      // Auto switch to login mode after 2 seconds
+      
       setTimeout(() => {
         this.isLoginMode = true;
         this.email = this.signupEmail;

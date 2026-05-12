@@ -1,5 +1,5 @@
 <div class="landing-container">
-  <!-- Animated Background -->
+  
   <div class="animated-bg">
     <div class="gradient-orb orb-1"></div>
     <div class="gradient-orb orb-2"></div>
@@ -7,7 +7,7 @@
   </div>
 
   <div class="landing-content">
-    <!-- Left Side - Brand Info -->
+    
     <div class="brand-section">
       <div class="brand-icon">🏔️</div>
       <h1 class="brand-title">City<br>Service<br>Finder</h1>
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <!-- Right Side - Login/Signup Card -->
+    
     <div class="login-section">
       <div class="login-card">
         <div class="card-header">
@@ -33,7 +33,7 @@
         <form (ngSubmit)="onSubmit()" class="login-form">
           
           @if (!isLoginMode) {
-            <!-- Signup: Full Name -->
+            
             <div class="input-group">
               <label class="input-label">Full Name</label>
               <div class="input-wrapper">
@@ -50,7 +50,7 @@
             </div>
           }
 
-          <!-- Email Field -->
+          
           <div class="input-group">
             <label class="input-label">Email Address</label>
             <div class="input-wrapper">
@@ -77,7 +77,7 @@
             </div>
           </div>
 
-          <!-- Password Field -->
+          
           <div class="input-group">
             <label class="input-label">Password</label>
             <div class="input-wrapper">
@@ -107,7 +107,7 @@
             </div>
           </div>
 
-          <!-- Confirm Password (Signup only) -->
+          
           @if (!isLoginMode) {
             <div class="input-group">
               <label class="input-label">Confirm Password</label>
@@ -125,7 +125,7 @@
             </div>
           }
 
-          <!-- Options (Login only) -->
+          
           @if (isLoginMode) {
             <div class="form-options">
               <label class="checkbox">
@@ -136,7 +136,7 @@
             </div>
           }
 
-          <!-- Messages -->
+          
           @if (errorMsg) {
             <div class="error-message">
               <span>⚠️</span>
@@ -151,7 +151,7 @@
             </div>
           }
 
-          <!-- Submit Button -->
+         
           <button type="submit" class="login-btn" [disabled]="isLoading">
             @if (isLoading) {
               <div class="spinner"></div>
@@ -163,7 +163,7 @@
           </button>
         </form>
 
-        <!-- Toggle between Login and Signup -->
+       
         <div class="toggle-mode">
           <p>
             {{ isLoginMode ? "Don't have an account?" : "Already have an account?" }}
@@ -190,7 +190,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  
   <footer class="landing-footer">
     <p>© 2025 City Service Finder | University of Baguio - School of Information Technology</p>
     <p>APPDEV1 Group Project · S.Y. 2025–2026</p>

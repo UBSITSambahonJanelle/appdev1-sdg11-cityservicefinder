@@ -19,7 +19,7 @@ export class CountriesService {
   private http   = inject(HttpClient);
   private apiUrl = 'https://restcountries.com/v3.1';
 
-  // Fetch Philippines data using ISO alpha code — more reliable than name search
+  
   getPhilippinesData(): Observable<Country[]> {
     return this.http.get<Country[]>(`${this.apiUrl}/alpha/PHL`).pipe(
       catchError(err =>

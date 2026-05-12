@@ -5,7 +5,7 @@ import { CityService } from '../models/service';
   providedIn: 'root'
 })
 export class CityService {
-  // Using Signal for state management
+  
   private services = signal<CityService[]>([
     {
       id: 1,

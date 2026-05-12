@@ -25,7 +25,7 @@ export class HomeComponent {
   showResults = false;
   showSuggestions = false;
   
-  // Popular search suggestions
+  
   popularSearches = [
     'Police Station', 'Hospital', 'Fire Station', 'City Hall',
     'Market', 'Public Transport', 'Health Center', 'Welfare Office',
@@ -62,7 +62,7 @@ export class HomeComponent {
   }
   
   onSearchBlur() {
-    // Delay to allow click events on suggestions to fire
+    
     setTimeout(() => {
       this.showSuggestions = false;
       this.showResults = false;
@@ -87,13 +87,13 @@ export class HomeComponent {
     const query = this.searchQuery.toLowerCase();
     const allServices = this.cityService.getAllServices();
     
-    // Get matching service names as suggestions
+    
     const matchingServices = allServices
       .filter(service => service.name.toLowerCase().includes(query))
       .slice(0, 5)
       .map(service => service.name);
     
-    // Combine with popular searches that match
+    
     const matchingPopular = this.popularSearches
       .filter(popular => popular.toLowerCase().includes(query))
       .slice(0, 3);

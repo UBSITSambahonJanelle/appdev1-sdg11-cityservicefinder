@@ -5,7 +5,7 @@ import { CityService as CityServiceModel } from '../models/service';
 export class CityService {
 
   private servicesData = signal<CityServiceModel[]>([
-    // ========== EMERGENCY SERVICES ==========
+    
     {
       id: 1,
       name: 'Baguio City Police Station (BCPO)',
@@ -78,7 +78,7 @@ export class CityService {
       isOpen: true
     },
 
-    // ========== HEALTH SERVICES ==========
+    
     {
       id: 8,
       name: 'Baguio General Hospital and Medical Center (BGHMC)',
@@ -140,7 +140,7 @@ export class CityService {
       isOpen: true
     },
 
-    // ========== WELFARE SERVICES ==========
+    
     {
       id: 14,
       name: 'City Social Welfare and Development Office (CSWDO)',
@@ -183,7 +183,7 @@ export class CityService {
       isOpen: true
     },
 
-    // ========== EMPLOYMENT SERVICES ==========
+   
     {
       id: 18,
       name: 'Public Employment Service Office (PESO)',
@@ -215,7 +215,7 @@ export class CityService {
       isOpen: true
     },
 
-    // ========== GOVERNMENT SERVICES ==========
+    
     {
       id: 21,
       name: 'Baguio City Hall',
@@ -257,7 +257,7 @@ export class CityService {
       isOpen: true
     },
 
-    // ========== TRANSPORT SERVICES ==========
+    
     {
       id: 25,
       name: 'Baguio City Transport and Traffic Management Office (CTTMO)',
@@ -299,7 +299,7 @@ export class CityService {
       isOpen: true
     },
 
-    // ========== UTILITIES ==========
+    
     {
       id: 29,
       name: 'BENECO - Baguio Main Office',

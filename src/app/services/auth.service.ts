@@ -16,11 +16,11 @@ export class AuthService {
   private readonly USER_KEY = 'user_data';
   private readonly USERS_KEY = 'registered_users';
   
-  // Signals for reactive state
+  
   private isAuthenticatedSignal = signal<boolean>(false);
   private currentUserSignal = signal<User | null>(null);
   
-  // Computed values
+ 
   isLoggedIn = computed(() => this.isAuthenticatedSignal());
   currentUser = computed(() => this.currentUserSignal());
   userName = computed(() => this.currentUserSignal()?.name || 'Guest');
@@ -32,7 +32,7 @@ export class AuthService {
   }
   
   private initUserStorage(): void {
-    // Initialize empty users array if not exists
+    
     if (!localStorage.getItem(this.USERS_KEY)) {
       localStorage.setItem(this.USERS_KEY, JSON.stringify([]));
     }
@@ -50,29 +50,29 @@ export class AuthService {
   
   login(email: string, password: string): Promise<{ success: boolean; message?: string; user?: User }> {
     return new Promise((resolve) => {
-      // Validate email format
+      
       if (!email || !email.includes('@')) {
         resolve({ success: false, message: 'Please enter a valid email address.' });
         return;
       }
       
-      // Validate password
+     
       if (!password || password.length < 1) {
         resolve({ success: false, message: 'Please enter your password.' });
         return;
       }
       
-      // Check if user exists in registered users
+      
       const storedUsers = JSON.parse(localStorage.getItem(this.USERS_KEY) || '[]');
       const user = storedUsers.find((u: any) => u.email === email);
       
-      // If user does NOT exist, reject login
+      
       if (!user) {
         resolve({ success: false, message: 'No account found with this email. Please create an account first.' });
         return;
       }
       
-      // Store session for existing user
+     
       localStorage.setItem(this.TOKEN_KEY, 'demo_token_' + Date.now());
       localStorage.setItem(this.USER_KEY, JSON.stringify(user));
       
@@ -89,25 +89,25 @@ export class AuthService {
   
   signup(name: string, email: string, password: string): Promise<{ success: boolean; message?: string }> {
     return new Promise((resolve) => {
-      // Validate name
+     
       if (!name || name.trim().length < 2) {
         resolve({ success: false, message: 'Please enter your full name.' });
         return;
       }
       
-      // Validate email
+     
       if (!email || !email.includes('@')) {
         resolve({ success: false, message: 'Please enter a valid email address.' });
         return;
       }
       
-      // Validate password
+     
       if (!password || password.length < 6) {
         resolve({ success: false, message: 'Password must be at least 6 characters.' });
         return;
       }
       
-      // Check if user already exists
+      
       const storedUsers = JSON.parse(localStorage.getItem(this.USERS_KEY) || '[]');
       const existingUser = storedUsers.find((u: any) => u.email === email);
       
@@ -116,7 +116,7 @@ export class AuthService {
         return;
       }
       
-      // Create new user
+      
       const newUser: User = {
         id: Date.now(),
         email: email,
