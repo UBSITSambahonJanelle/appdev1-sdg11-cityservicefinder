@@ -9,36 +9,33 @@ import { AboutComponent } from './pages/about/about.component';
 import { SavedServicesComponent } from './pages/saved-services/saved-services.component';
 import { ReportIssueComponent } from './pages/report-issue/report-issue.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { authGuard } from './guards/auth.guard';
 import { unsavedGuard } from './guards/unsaved.guard';
 
 export const routes: Routes = [
+  // Public routes (no login required)
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'emergency', component: EmergencyComponent },
   { path: 'transport', component: TransportComponent },
   { path: 'city-services', component: CityServicesComponent },
   { path: 'city-services/:id', component: ServiceDetailComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  
+  // Protected routes (require login)
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'saved', component: SavedServicesComponent, canActivate: [authGuard] },
-  { path: 'report', component: ReportIssueComponent, canActivate: [authGuard], canDeactivate: [unsavedGuard] },
-  { path: 'about', component: AboutComponent },
-  { path: 'login', component: LoginComponent },
-  { path: '**', component: NotFoundComponent },
-
-  // Protected routes — authGuard now returns UrlTree for clean redirect
-  { path: 'dashboard',    component: DashboardComponent,    canActivate: [authGuard] },
-  { path: 'saved',        component: SavedServicesComponent, canActivate: [authGuard] },
-
-  {
-    path: 'report',
-    component: ReportIssueComponent,
-    canActivate:   [authGuard],
-    canDeactivate: [unsavedGuard]
+  { 
+    path: 'report', 
+    component: ReportIssueComponent, 
+    canActivate: [authGuard], 
+    canDeactivate: [unsavedGuard] 
   },
-
-  { path: 'about', component: AboutComponent },
-  { path: 'login', component: LoginComponent },
-  { path: '**',    component: NotFoundComponent },
+  
+  // Wildcard route - MUST be last
+  { path: '**', component: NotFoundComponent }
 ];

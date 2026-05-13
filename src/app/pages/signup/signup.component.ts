@@ -1,34 +1,47 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink, ActivatedRoute } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-signup',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class LoginComponent {
+export class SignupComponent {
+  name = '';
   email = '';
   password = '';
+  confirmPassword = '';
   isLoading = false;
   errorMsg = '';
   successMsg = '';
+  
+  // Separate variables for each password field
   showPassword = false;
+  showConfirmPassword = false;
 
-  constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPassword(): void {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 
   onSubmit(): void {
     this.errorMsg = '';
     this.successMsg = '';
 
+    if (!this.name.trim()) {
+      this.errorMsg = 'Please enter your name.';
+      return;
+    }
     if (!this.email.trim()) {
       this.errorMsg = 'Please enter your email address.';
       return;
@@ -38,23 +51,30 @@ export class LoginComponent {
       return;
     }
     if (!this.password) {
-      this.errorMsg = 'Please enter your password.';
+      this.errorMsg = 'Please enter a password.';
+      return;
+    }
+    if (this.password.length < 6) {
+      this.errorMsg = 'Password must be at least 6 characters.';
+      return;
+    }
+    if (this.password !== this.confirmPassword) {
+      this.errorMsg = 'Passwords do not match.';
       return;
     }
 
     this.isLoading = true;
 
-    this.auth.login(this.email, this.password)
+    this.auth.signup(this.name, this.email, this.password)
       .then((result) => {
         this.isLoading = false;
         if (result.success) {
-          this.successMsg = result.message || 'Login successful! Redirecting...';
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+          this.successMsg = result.message || 'Account created! Redirecting to login...';
           setTimeout(() => {
-            this.router.navigateByUrl(returnUrl);
-          }, 1000);
+            this.router.navigate(['/login']);
+          }, 1500);
         } else {
-          this.errorMsg = result.message || 'Login failed. Please try again.';
+          this.errorMsg = result.message || 'Signup failed. Please try again.';
         }
       })
       .catch((error) => {
